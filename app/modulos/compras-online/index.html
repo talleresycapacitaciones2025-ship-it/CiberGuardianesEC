@@ -5,6 +5,125 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Módulo 4: Compras Online Seguras</title>
     <link rel="stylesheet" href="../../../css/styles.css">
+    <style>
+    .situacion-card {
+        background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+        border-left: 5px solid #f39c12;
+        padding: 20px;
+        margin: 20px 0;
+        border-radius: 10px;
+        box-shadow: 0 3px 10px rgba(0,0,0,0.1);
+    }
+    .situacion-card h4 {
+        margin: 0 0 10px 0;
+        color: #2c3e50;
+        font-size: 1.2em;
+    }
+    .situacion-card p {
+        margin: 8px 0;
+        line-height: 1.5;
+    }
+    .opciones-container {
+        display: flex;
+        gap: 10px;
+        margin-top: 15px;
+        flex-wrap: wrap;
+    }
+    .opcion-btn {
+        padding: 10px 20px;
+        border: none;
+        border-radius: 6px;
+        cursor: pointer;
+        font-weight: bold;
+        font-size: 14px;
+        transition: all 0.3s ease;
+        color: white;
+        flex: 1;
+        min-width: 150px;
+    }
+    .opcion-btn:hover:not(:disabled) {
+        transform: translateY(-2px);
+        box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+    }
+    .opcion-btn:disabled {
+        opacity: 0.6;
+        cursor: not-allowed;
+    }
+    .btn-1 { background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); }
+    .btn-2 { background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%); }
+    .btn-3 { background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%); }
+    .btn-4 { background: linear-gradient(135deg, #43e97b 0%, #38f9d7 100%); }
+    .resultado {
+        margin-top: 12px;
+        padding: 12px;
+        border-radius: 6px;
+        font-weight: bold;
+        display: none;
+        animation: fadeIn 0.4s ease;
+    }
+    @keyframes fadeIn {
+        from { opacity: 0; transform: translateY(-10px); }
+        to { opacity: 1; transform: translateY(0); }
+    }
+    .btn-recargar {
+        background: linear-gradient(135deg, #fa709a 0%, #fee140 100%);
+        color: white;
+        padding: 12px 25px;
+        border: none;
+        border-radius: 8px;
+        cursor: pointer;
+        font-weight: bold;
+        font-size: 15px;
+        width: 100%;
+        margin-top: 20px;
+        transition: all 0.3s ease;
+    }
+    .btn-recargar:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 6px 12px rgba(0,0,0,0.2);
+    }
+    .btn-intentar {
+        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        color: white;
+        padding: 10px 20px;
+        border: none;
+        border-radius: 6px;
+        cursor: pointer;
+        font-weight: bold;
+        margin-top: 10px;
+        transition: all 0.3s ease;
+    }
+    .btn-intentar:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+    }
+    .nav-buttons {
+        display: flex;
+        gap: 15px;
+        margin-top: 30px;
+        flex-wrap: wrap;
+    }
+    .nav-btn {
+        flex: 1;
+        min-width: 200px;
+        padding: 12px 25px;
+        background: linear-gradient(135deg, #3498db 0%, #2980b9 100%);
+        color: white;
+        text-decoration: none;
+        border-radius: 8px;
+        text-align: center;
+        font-weight: bold;
+        transition: all 0.3s ease;
+        display: inline-block;
+    }
+    .nav-btn:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 6px 12px rgba(0,0,0,0.2);
+    }
+    .nav-btn.secundario {
+        background: linear-gradient(135deg, #95a5a6 0%, #7f8c8d 100%);
+    }
+    </style>
 </head>
 <body>
     <header>
@@ -21,7 +140,7 @@
         <section class="juego">
             <h3>🎮 Desafío: Tienda Segura o Estafa</h3>
             <div id="contenedor-preguntas"></div>
-            <button onclick="cargarNuevasPreguntas()" style="background-color: #9b59b6; margin-top: 20px; width: 100%;">🔄 Ver otras situaciones</button>
+            <button onclick="cargarNuevasPreguntas()" class="btn-recargar">🔄 Ver otras situaciones</button>
         </section>
         
         <section class="aprende">
@@ -34,10 +153,10 @@
             </ul>
         </section>
         
-        <nav class="navegacion">
-            <a href="../../../index.html">← Volver al inicio</a>
-            <a href="../redes-sociales/">← Módulo anterior: Redes Sociales</a>
-        </nav>
+        <div class="nav-buttons">
+            <a href="../../../index.html" class="nav-btn secundario">← Volver al inicio</a>
+            <a href="../redes-sociales/" class="nav-btn secundario">← Módulo anterior: Redes Sociales</a>
+        </div>
     </main>
     
     <footer>
@@ -46,20 +165,26 @@
     
     <script>
     const bancoPreguntas = [
-        { id: 1, plataforma: "Tienda 1", icono: "🛍️", situacion: "iPhone 15 Pro a $299 (precio normal: $1,200)", riesgo: "Precio demasiado bueno para ser verdad.", opciones: [{ texto: "Comprar inmediatamente", valor: "comprar", correcta: false }, { texto: "Es estafa, no comprar", valor: "estafa", correcta: true }], explicacion: "Si es demasiado bueno para ser verdad, probablemente sea estafa." },
-        { id: 2, plataforma: "Tienda 2", icono: "🛍️", situacion: "Tienda con https:// y candado 🔒", riesgo: "El candado indica conexión segura.", opciones: [{ texto: "Es más segura", valor: "segura", correcta: true }, { texto: "No importa", valor: "importa", correcta: false }], explicacion: "https:// cifra tus datos durante la compra." },
-        { id: 3, plataforma: "Marketplace", icono: "📱", situacion: "Vendedor nuevo sin reseñas pide depósito", riesgo: "Cuentas nuevas sin historial son sospechosas.", opciones: [{ texto: "Depositar", valor: "depositar", correcta: false }, { texto: "No depositar", valor: "no-depositar", correcta: true }], explicacion: "Nunca deposites a vendedores sin historial verificable." },
-        { id: 4, plataforma: "Tienda 4", icono: "🛍️", situacion: "Tienda con RUC visible y dirección física", riesgo: "Información verificable es señal de legitimidad.", opciones: [{ texto: "Es más confiable", valor: "confiable", correcta: true }, { texto: "No importa", valor: "importa", correcta: false }], explicacion: "Las tiendas legítimas muestran su información fiscal." },
-        { id: 5, plataforma: "Pago", icono: "💳", situacion: "Solo aceptan transferencia anticipada", riesgo: "Sin protección al comprador.", opciones: [{ texto: "Transferir", valor: "transferir", correcta: false }, { texto: "Buscar otra opción", valor: "buscar", correcta: true }], explicacion: "Las tiendas serias ofrecen múltiples formas de pago." },
-        { id: 6, plataforma: "Tienda 6", icono: "🛍️", situacion: "Tienda conocida con opción contraentrega", riesgo: "Pago contraentrega es más seguro.", opciones: [{ texto: "Es más seguro", valor: "seguro", correcta: true }, { texto: "Es igual", valor: "igual", correcta: false }], explicacion: "Contraentrega = pagas cuando recibes el producto." },
-        { id: 7, plataforma: "Email", icono: "📧", situacion: "Oferta exclusiva por email con enlace", riesgo: "Podría ser phishing disfrazado de oferta.", opciones: [{ texto: "Hacer click", valor: "click", correcta: false }, { texto: "Ir directo a la web", valor: "web", correcta: true }], explicacion: "Siempre ve directo a la web oficial." },
-        { id: 8, plataforma: "Reseñas", icono: "⭐", situacion: "Todas las reseñas son de 5 estrellas sin comentarios", riesgo: "Podrían ser reseñas falsas.", opciones: [{ texto: "Son genuinas", valor: "genuinas", correcta: false }, { texto: "Son sospechosas", valor: "sospechosas", correcta: true }], explicacion: "Las reseñas reales tienen variedad." },
-        { id: 9, plataforma: "Contacto", icono: "📞", situacion: "No hay teléfono ni dirección de contacto", riesgo: "Imposible reclamar si hay problema.", opciones: [{ texto: "No importa", valor: "importa", correcta: false }, { texto: "Es señal de alerta", valor: "alerta", correcta: true }], explicacion: "Las tiendas serias tienen múltiples canales de contacto." },
-        { id: 10, plataforma: "Políticas", icono: "📋", situacion: "Políticas de devolución claras y visibles", riesgo: "Indica profesionalismo y confianza.", opciones: [{ texto: "Es buena señal", valor: "buena", correcta: true }, { texto: "No es importante", valor: "importante", correcta: false }], explicacion: "Las políticas claras protegen al comprador." }
+        { id: 1, icono: "🛍️", situacion: "iPhone 15 Pro a $299 (precio normal: $1,200)", opciones: [{ texto: "Comprar inmediatamente", valor: "comprar", correcta: false }, { texto: "Es estafa, no comprar", valor: "estafa", correcta: true }], tip: "Si es demasiado bueno para ser verdad, probablemente sea estafa." },
+        { id: 2, icono: "🛍️", situacion: "Tienda con https:// y candado 🔒", opciones: [{ texto: "Es más segura", valor: "segura", correcta: true }, { texto: "No importa", valor: "importa", correcta: false }], tip: "https:// cifra tus datos durante la compra." },
+        { id: 3, icono: "📱", situacion: "Vendedor nuevo sin reseñas pide depósito", opciones: [{ texto: "Depositar", valor: "depositar", correcta: false }, { texto: "No depositar", valor: "no-depositar", correcta: true }], tip: "Nunca deposites a vendedores sin historial verificable." },
+        { id: 4, icono: "🛍️", situacion: "Tienda con RUC visible y dirección física", opciones: [{ texto: "Es más confiable", valor: "confiable", correcta: true }, { texto: "No importa", valor: "importa", correcta: false }], tip: "Las tiendas legítimas muestran su información fiscal." },
+        { id: 5, icono: "💳", situacion: "Solo aceptan transferencia anticipada", opciones: [{ texto: "Transferir", valor: "transferir", correcta: false }, { texto: "Buscar otra opción", valor: "buscar", correcta: true }], tip: "Las tiendas serias ofrecen múltiples formas de pago." },
+        { id: 6, icono: "🛍️", situacion: "Tienda conocida con opción contraentrega", opciones: [{ texto: "Es más seguro", valor: "seguro", correcta: true }, { texto: "Es igual", valor: "igual", correcta: false }], tip: "Contraentrega = pagas cuando recibes el producto." },
+        { id: 7, icono: "📧", situacion: "Oferta exclusiva por email con enlace", opciones: [{ texto: "Hacer click", valor: "click", correcta: false }, { texto: "Ir directo a la web", valor: "web", correcta: true }], tip: "Siempre ve directo a la web oficial, no por enlaces de email." },
+        { id: 8, icono: "⭐", situacion: "Todas las reseñas son de 5 estrellas sin comentarios", opciones: [{ texto: "Son genuinas", valor: "genuinas", correcta: false }, { texto: "Son sospechosas", valor: "sospechosas", correcta: true }], tip: "Las reseñas reales tienen variedad y comentarios detallados." },
+        { id: 9, icono: "📞", situacion: "No hay teléfono ni dirección de contacto", opciones: [{ texto: "No importa", valor: "importa", correcta: false }, { texto: "Es señal de alerta", valor: "alerta", correcta: true }], tip: "Las tiendas serias tienen múltiples canales de contacto." },
+        { id: 10, icono: "📋", situacion: "Políticas de devolución claras y visibles", opciones: [{ texto: "Es buena señal", valor: "buena", correcta: true }, { texto: "No es importante", valor: "importante", correcta: false }], tip: "Las políticas claras protegen al comprador." }
     ];
     
+    let preguntasUsadas = [];
+    
     function seleccionarAleatorias(banco, cantidad) {
-        const mezclado = [...banco];
+        const disponibles = banco.filter(p => !preguntasUsadas.includes(p.id));
+        if (disponibles.length < cantidad) {
+            preguntasUsadas = [];
+        }
+        const mezclado = [...banco].filter(p => !preguntasUsadas.includes(p.id));
         for (let i = mezclado.length - 1; i > 0; i--) {
             const j = Math.floor(Math.random() * (i + 1));
             [mezclado[i], mezclado[j]] = [mezclado[j], mezclado[i]];
@@ -73,20 +198,18 @@
         const seleccionadas = seleccionarAleatorias(bancoPreguntas, 4);
         
         seleccionadas.forEach((p) => {
+            preguntasUsadas.push(p.id);
             const html = `
-                <div class="correo-ejemplo" style="margin-bottom: 25px;">
-                    <h4>${p.icono} ${p.plataforma}</h4>
-                    <p><strong>Situación:</strong> ${p.situacion}</p>
-                    <p><strong>Riesgo:</strong> ${p.riesgo}</p>
-                    <div style="margin-top: 15px;">
-                        ${p.opciones.map(op => `
-                            <button onclick="verificar(${p.id}, '${op.valor}', this)" 
-                                    style="background-color: #3498db; margin: 5px; display: block; width: 100%; margin-bottom: 8px;">
+                <div class="situacion-card" id="card-${p.id}">
+                    <h4>${p.icono} ${p.situacion}</h4>
+                    <div class="opciones-container" id="opciones-${p.id}">
+                        ${p.opciones.map((op, i) => `
+                            <button class="opcion-btn btn-${i+1}" onclick="verificar(${p.id}, '${op.valor}', this)">
                                 ${op.texto}
                             </button>
                         `).join('')}
                     </div>
-                    <div id="resultado-${p.id}" style="margin-top: 10px; padding: 10px; display: none; border-radius: 8px;"></div>
+                    <div id="resultado-${p.id}" class="resultado"></div>
                 </div>
             `;
             contenedor.innerHTML += html;
@@ -96,18 +219,52 @@
     function verificar(id, valor, boton) {
         const pregunta = bancoPreguntas.find(p => p.id === id);
         const resultado = document.getElementById(`resultado-${id}`);
-        const opciones = boton.parentElement.querySelectorAll('button');
+        const opcionesDiv = document.getElementById(`opciones-${id}`);
+        const opciones = opcionesDiv.querySelectorAll('.opcion-btn');
+        
         opciones.forEach(btn => btn.disabled = true);
         
         const opcionCorrecta = pregunta.opciones.find(op => op.valor === valor);
         if (opcionCorrecta && opcionCorrecta.correcta) {
-            resultado.className = 'fuerte';
-            resultado.innerHTML = `✅ ¡CORRECTO! ${pregunta.explicacion}`;
+            resultado.className = 'resultado';
+            resultado.style.background = 'linear-gradient(135deg, #43e97b 0%, #38f9d7 100%)';
+            resultado.style.color = 'white';
+            resultado.innerHTML = `✅ ¡CORRECTO!<br><br>💡 <strong>TIP:</strong> ${pregunta.tip}`;
         } else {
-            resultado.className = 'debil';
-            resultado.innerHTML = `❌ Incorrecto. ${pregunta.explicacion}`;
+            resultado.className = 'resultado';
+            resultado.style.background = 'linear-gradient(135deg, #fa709a 0%, #fee140 100%)';
+            resultado.style.color = 'white';
+            resultado.innerHTML = `❌ Incorrecto.<br><br>💡 <strong>TIP:</strong> ${pregunta.tip}<br><button class="btn-intentar" onclick="intentarDeNuevo(${id})">🔄 Volver a intentar</button>`;
         }
         resultado.style.display = 'block';
+    }
+    
+    function intentarDeNuevo(id) {
+        const card = document.getElementById(`card-${id}`);
+        const disponibles = bancoPreguntas.filter(p => p.id !== id && !preguntasUsadas.includes(p.id));
+        if (disponibles.length === 0) {
+            preguntasUsadas = [];
+        }
+        
+        const nuevaPregunta = disponibles.length > 0 
+            ? disponibles[Math.floor(Math.random() * disponibles.length)]
+            : bancoPreguntas[Math.floor(Math.random() * bancoPreguntas.length)];
+        
+        preguntasUsadas.push(nuevaPregunta.id);
+        
+        card.innerHTML = `
+            <h4>${nuevaPregunta.icono} ${nuevaPregunta.situacion}</h4>
+            <div class="opciones-container" id="opciones-${nuevaPregunta.id}">
+                ${nuevaPregunta.opciones.map((op, i) => `
+                    <button class="opcion-btn btn-${i+1}" onclick="verificar(${nuevaPregunta.id}, '${op.valor}', this)">
+                        ${op.texto}
+                    </button>
+                `).join('')}
+            </div>
+            <div id="resultado-${nuevaPregunta.id}" class="resultado"></div>
+        `;
+        
+        card.id = `card-${nuevaPregunta.id}`;
     }
     
     window.onload = cargarNuevasPreguntas;
