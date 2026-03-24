@@ -15,86 +15,28 @@
     <main>
         <section class="intro">
             <h2>¿Es segura esta tienda?</h2>
-            <p>Las compras online crecieron en Ecuador, pero también las estafas. ¡Protégete!</p>
+            <p>Las compras online crecieron en Ecuador, pero también las estafas.</p>
         </section>
         
         <section class="juego">
             <h3>🎮 Desafío: Tienda Segura o Estafa</h3>
+            <p style="background-color: #fff3cd; padding: 15px; border-radius: 8px; border-left: 4px solid #ffa502; margin-bottom: 20px;">
+                💡 <strong>Nota:</strong> Cada vez que entres, verás 4 situaciones aleatorias de un banco de 10.
+            </p>
             
-            <div class="tienda-ejemplo">
-                <h4>🛍️ Tienda 1: "Ofertas Ecuador"</h4>
-                <p><strong>URL:</strong> www.ofertas-ecuador-descuentos.com</p>
-                <p><strong>Precio:</strong> iPhone 15 Pro - $299 (Precio normal: $1,200)</p>
-                <p><strong>Pago:</strong> Solo transferencia bancaria anticipada</p>
-                <p><strong>Datos:</strong> No tiene dirección física ni teléfono de contacto</p>
-                
-                <div style="margin-top: 15px;">
-                    <button onclick="evaluarTienda(1, 'segura')" style="background-color: #2ecc71;">✅ Es Segura</button>
-                    <button onclick="evaluarTienda(1, 'estafa')" style="background-color: #e74c3c;">🚫 Es Estafa</button>
-                </div>
-                
-                <div id="resultado-1"></div>
-            </div>
+            <div id="contenedor-preguntas"></div>
             
-            <div class="tienda-ejemplo">
-                <h4>🛍️ Tienda 2: "Falabella.com.ec"</h4>
-                <p><strong>URL:</strong> www.falabella.com.ec</p>
-                <p><strong>Seguridad:</strong> Tiene candado 🔒 y https://</p>
-                <p><strong>Pago:</strong> Tarjeta de crédito, débito, contraentrega</p>
-                <p><strong>Contacto:</strong> Teléfono, dirección, RUC visible</p>
-                
-                <div style="margin-top: 15px;">
-                    <button onclick="evaluarTienda(2, 'segura')" style="background-color: #2ecc71;">✅ Es Segura</button>
-                    <button onclick="evaluarTienda(2, 'estafa')" style="background-color: #e74c3c;">🚫 Es Estafa</button>
-                </div>
-                
-                <div id="resultado-2"></div>
-            </div>
-            
-            <div class="tienda-ejemplo">
-                <h4>🛍️ Marketplace Facebook: "Vendedor XYZ"</h4>
-                <p><strong>Producto:</strong> Laptop gamer - $350 (Precio normal: $800)</p>
-                <p><strong>Vendedor:</strong> Cuenta creada hace 2 días, sin reseñas</p>
-                <p><strong>Entrega:</strong> "Deposita y coordinamos"</p>
-                <p><strong>Ubicación:</strong> Dice estar en Quito pero escribe desde otra ciudad</p>
-                
-                <div style="margin-top: 15px;">
-                    <button onclick="evaluarTienda(3, 'segura')" style="background-color: #2ecc71;">✅ Es Seguro</button>
-                    <button onclick="evaluarTienda(3, 'estafa')" style="background-color: #e74c3c;">🚫 Es Estafa</button>
-                </div>
-                
-                <div id="resultado-3"></div>
-            </div>
+            <button onclick="cargarNuevasPreguntas()" style="background-color: #9b59b6; margin-top: 20px; width: 100%;">🔄 Ver otras situaciones</button>
         </section>
         
         <section class="aprende">
             <h3>🔍 Señales de Tienda Segura:</h3>
             <ul>
-                <li>URL comienza con https:// y tiene candado 🔒</li>
-                <li>Precios realistas (no "demasiado buenos para ser verdad")</li>
-                <li>Información de contacto visible (teléfono, dirección, RUC)</li>
-                <li>Múltiples formas de pago (incluyendo contraentrega)</li>
-                <li>Reseñas y calificaciones de otros clientes</li>
-                <li>Políticas de devolución claras</li>
-                <li>Desconfía de precios 70% más bajos que el mercado</li>
-                <li>Nunca pagues por transferencia a desconocidos</li>
+                <li>URL con https:// y candado 🔒</li>
+                <li>Precios realistas</li>
+                <li>Información de contacto visible</li>
+                <li>Múltiples formas de pago</li>
             </ul>
-        </section>
-        
-        <section class="estadisticas">
-            <h3>📊 Estafas en Ecuador:</h3>
-            <ul>
-                <li>Marketplace Facebook: 45% de las estafas online</li>
-                <li>Tiendas falsas de electrónicos: 30%</li>
-                <li>Phishing de bancos: 15%</li>
-                <li>Solo el 25% de ecuatorianos verifica la seguridad antes de comprar</li>
-            </ul>
-        </section>
-        
-        <section class="consejos-rapidos">
-            <h3>💡 Consejo de Oro:</h3>
-            <p><strong>"Si es demasiado bueno para ser verdad, probablemente sea una estafa."</strong></p>
-            <p>Siempre compara precios en al menos 3 tiendas antes de comprar.</p>
         </section>
         
         <nav class="navegacion">
@@ -107,28 +49,141 @@
         <p>Hecho con 💙 para Ecuador | CiberGuardianesEC</p>
     </footer>
     
+    <script src="../../../js/preguntas-aleatorias.js"></script>
     <script>
-    function evaluarTienda(num, evaluacion) {
-        const resultado = document.getElementById('resultado-' + num);
-        
-        const correctas = {
-            1: 'estafa',
-            2: 'segura',
-            3: 'estafa'
-        };
-        
-        if (evaluacion === correctas[num]) {
-            resultado.className = 'fuerte';
-            resultado.innerHTML = '✅ ¡CORRECTO! Bien identificado.';
-        } else {
-            resultado.className = 'debil';
-            if (num === 1) {
-                resultado.innerHTML = '❌ Es estafa: Precio irreal, sin contacto, solo transferencia.';
-            } else if (num === 3) {
-                resultado.innerHTML = '❌ Es estafa: Vendedor nuevo, precio bajo, pide depósito.';
-            }
+    const bancoPreguntas = [
+        {
+            id: 1,
+            plataforma: "Tienda 1",
+            icono: "🛍️",
+            situacion: "iPhone 15 Pro a $299 (precio normal: $1,200)",
+            riesgo: "Precio demasiado bueno para ser verdad.",
+            opciones: [
+                { texto: "Comprar inmediatamente", valor: "comprar", correcta: false },
+                { texto: "Es estafa, no comprar", valor: "estafa", correcta: true }
+            ],
+            explicacion: "Si es demasiado bueno para ser verdad, probablemente sea estafa."
+        },
+        {
+            id: 2,
+            plataforma: "Tienda 2",
+            icono: "🛍️",
+            situacion: "Tienda con https:// y candado 🔒",
+            riesgo: "El candado indica conexión segura.",
+            opciones: [
+                { texto: "Es más segura", valor: "segura", correcta: true },
+                { texto: "No importa", valor: "importa", correcta: false }
+            ],
+            explicacion: "https:// cifra tus datos durante la compra."
+        },
+        {
+            id: 3,
+            plataforma: "Marketplace",
+            icono: "📱",
+            situacion: "Vendedor nuevo sin reseñas pide depósito",
+            riesgo: "Cuentas nuevas sin historial son sospechosas.",
+            opciones: [
+                { texto: "Depositar", valor: "depositar", correcta: false },
+                { texto: "No depositar", valor: "no-depositar", correcta: true }
+            ],
+            explicacion: "Nunca deposites a vendedores sin historial verificable."
+        },
+        {
+            id: 4,
+            plataforma: "Tienda 4",
+            icono: "🛍️",
+            situacion: "Tienda con RUC visible y dirección física",
+            riesgo: "Información verificable es señal de legitimidad.",
+            opciones: [
+                { texto: "Es más confiable", valor: "confiable", correcta: true },
+                { texto: "No importa", valor: "importa", correcta: false }
+            ],
+            explicacion: "Las tiendas legítimas muestran su información fiscal."
+        },
+        {
+            id: 5,
+            plataforma: "Pago",
+            icono: "💳",
+            situacion: "Solo aceptan transferencia anticipada",
+            riesgo: "Sin protección al comprador.",
+            opciones: [
+                { texto: "Transferir", valor: "transferir", correcta: false },
+                { texto: "Buscar otra opción", valor: "buscar", correcta: true }
+            ],
+            explicacion: "Las tiendas serias ofrecen múltiples formas de pago."
+        },
+        {
+            id: 6,
+            plataforma: "Tienda 6",
+            icono: "🛍️",
+            situacion: "Tienda conocida con opción contraentrega",
+            riesgo: "Pago contraentrega es más seguro.",
+            opciones: [
+                { texto: "Es más seguro", valor: "seguro", correcta: true },
+                { texto: "Es igual", valor: "igual", correcta: false }
+            ],
+            explicacion: "Contraentrega = pagas cuando recibes el producto."
+        },
+        {
+            id: 7,
+            plataforma: "Email",
+            icono: "📧",
+            situacion: "Oferta exclusiva por email con enlace",
+            riesgo: "Podría ser phishing disfrazado de oferta.",
+            opciones: [
+                { texto: "Hacer click", valor: "click", correcta: false },
+                { texto: "Ir directo a la web", valor: "web", correcta: true }
+            ],
+            explicacion: "Siempre ve directo a la web oficial, no por enlaces de email."
+        },
+        {
+            id: 8,
+            plataforma: "Reseñas",
+            icono: "⭐",
+            situacion: "Todas las reseñas son de 5 estrellas sin comentarios",
+            riesgo: "Podrían ser reseñas falsas.",
+            opciones: [
+                { texto: "Son genuinas", valor: "genuinas", correcta: false },
+                { texto: "Son sospechosas", valor: "sospechosas", correcta: true }
+            ],
+            explicacion: "Las reseñas reales tienen variedad y comentarios detallados."
+        },
+        {
+            id: 9,
+            plataforma: "Contacto",
+            icono: "📞",
+            situacion: "No hay teléfono ni dirección de contacto",
+            riesgo: "Imposible reclamar si hay problema.",
+            opciones: [
+                { texto: "No importa", valor: "importa", correcta: false },
+                { texto: "Es señal de alerta", valor: "alerta", correcta: true }
+            ],
+            explicacion: "Las tiendas serias tienen múltiples canales de contacto."
+        },
+        {
+            id: 10,
+            plataforma: "Políticas",
+            icono: "📋",
+            situacion: "Políticas de devolución claras y visibles",
+            riesgo: "Indica profesionalismo y confianza.",
+            opciones: [
+                { texto: "Es buena señal", valor: "buena", correcta: true },
+                { texto: "No es importante", valor: "importante", correcta: false }
+            ],
+            explicacion: "Las políticas claras protegen al comprador."
         }
+    ];
+    
+    function cargarNuevasPreguntas() {
+        const preguntasSeleccionadas = seleccionarPreguntasAleatorias(bancoPreguntas, 4);
+        renderizarPreguntas(preguntasSeleccionadas, 'contenedor-preguntas', 'verificarRespuestaCompras');
     }
+    
+    function verificarRespuestaCompras(id, valor, boton) {
+        verificarRespuesta(id, valor, boton, bancoPreguntas);
+    }
+    
+    window.onload = cargarNuevasPreguntas;
     </script>
 </body>
 </html>
