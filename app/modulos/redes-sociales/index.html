@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Módulo 3: Redes Sociales y Privacidad</title>
+    <link rel="stylesheet" href="../../../css/styles.css">
+</head>
+<body>
+    <header>
+        <h1>📱 Módulo 3: Redes Sociales y Privacidad</h1>
+    </header>
+    
+    <main>
+        <section class="intro">
+            <h2>¿Quién puede ver tu información?</h2>
+            <p>Aprende a configurar tu privacidad en redes sociales.</p>
+        </section>
+        
+        <section class="juego">
+            <h3>Desafío: Configura tu privacidad</h3>
+            
+            <div class="privacidad-ejemplo" style="border: 2px solid #3498db; padding: 15px; margin: 15px 0; border-radius: 10px;">
+                <h4>🔓 Situación 1: Facebook</h4>
+                <p><strong>Configuración actual:</strong> Tus publicaciones son visibles para "Público"</p>
+                <p><strong>Riesgo:</strong> Cualquier persona puede ver tus fotos, información personal y ubicación.</p>
+                
+                <div style="margin-top: 15px;">
+                    <p><strong>¿Qué deberías hacer?</strong></p>
+                    <button onclick="configurarPrivacidad(1, 'publico')" style="background-color: #e74c3c; margin: 5px;">Dejarlo en Público</button>
+                    <button onclick="configurarPrivacidad(1, 'amigos')" style="background-color: #2ecc71; margin: 5px;">Cambiar a "Solo Amigos"</button>
+                    <button onclick="configurarPrivacidad(1, 'solo-yo')" style="background-color: #f39c12; margin: 5px;">Cambiar a "Solo Yo"</button>
+                </div>
+                
+                <div id="resultado-1" style="margin-top: 10px; padding: 10px; display: none;"></div>
+            </div>
+            
+            <div class="privacidad-ejemplo" style="border: 2px solid #3498db; padding: 15px; margin: 15px 0; border-radius: 10px;">
+                <h4>🔓 Situación 2: Instagram</h4>
+                <p><strong>Configuración actual:</strong> Tu cuenta es "Pública"</p>
+                <p><strong>Riesgo:</strong> Cualquiera puede seguirte, ver tus historias y descargar tus fotos.</p>
+                
+                <div style="margin-top: 15px;">
+                    <p><strong>¿Qué deberías hacer?</strong></p>
+                    <button onclick="configurarPrivacidad(2, 'publica')" style="background-color: #e74c3c; margin: 5px;">Dejarla Pública</button>
+                    <button onclick="configurarPrivacidad(2, 'privada')" style="background-color: #2ecc71; margin: 5px;">Cambiar a Cuenta Privada</button>
+                </div>
+                
+                <div id="resultado-2" style="margin-top: 10px; padding: 10px; display: none;"></div>
+            </div>
+            
+            <div class="privacidad-ejemplo" style="border: 2px solid #3498db; padding: 15px; margin: 15px 0; border-radius: 10px;">
+                <h4>🔓 Situación 3: WhatsApp</h4>
+                <p><strong>Configuración actual:</strong> Tu foto de perfil, estado y última vez son visibles para "Todos"</p>
+                <p><strong>Riesgo:</strong> Desconocidos pueden ver cuándo estás en línea y tu foto.</p>
+                
+                <div style="margin-top: 15px;">
+                    <p><strong>¿Qué deberías hacer?</strong></p>
+                    <button onclick="configurarPrivacidad(3, 'todos')" style="background-color: #e74c3c; margin: 5px;">Dejar en "Todos"</button>
+                    <button onclick="configurarPrivacidad(3, 'contactos')" style="background-color: #2ecc71; margin: 5px;">Cambiar a "Mis Contactos"</button>
+                </div>
+                
+                <div id="resultado-3" style="margin-top: 10px; padding: 10px; display: none;"></div>
+            </div>
+        </section>
+        
+        <section class="aprende">
+            <h3>🔐 Consejos de Privacidad:</h3>
+            <ul>
+                <li>✅ Configura tus publicaciones como "Solo Amigos"</li>
+                <li>✅ Revisa quién puede ver tu información personal</li>
+                <li>✅ No aceptes solicitudes de desconocidos</li>
+                <li>✅ Desactiva la ubicación en tus publicaciones</li>
+                <li>✅ Revisa las etiquetas antes de que se publiquen</li>
+                <li>✅ Usa autenticación de dos factores</li>
+                <li>❌ No compartas tu dirección, teléfono o documentos</li>
+            </ul>
+        </section>
+        
+        <section class="estadisticas" style="background-color: #f8f9fa; padding: 15px; border-radius: 10px; margin: 20px 0;">
+            <h3>📊 ¿Sabías qué?</h3>
+            <ul>
+                <li>🇪🇨 El 65% de ecuatorianos tiene su Facebook en modo "Público"</li>
+                <li>⚠️ El 40% ha compartido información sensible sin saberlo</li>
+                <li>🔒 Solo el 20% usa autenticación de dos factores</li>
+            </ul>
+        </section>
+        
+        <nav class="navegacion">
+            <a href="../../../index.html">← Volver al inicio</a>
+            <a href="../phishing/">← Módulo anterior: Phishing</a>
+        </nav>
+    </main>
+    
+    <script>
+    function configurarPrivacidad(num, opcion) {
+        const resultado = document.getElementById('resultado-' + num);
+        resultado.style.display = 'block';
+        
+        const correctas = {
+            1: 'amigos',
+            2: 'privada',
+            3: 'contactos'
+        };
+        
+        if (opcion === correctas[num]) {
+            resultado.style.backgroundColor = '#2ecc71';
+            resultado.style.color = 'white';
+            resultado.innerHTML = '✅ ¡CORRECTO! Esa es la configuración más segura.';
+        } else if (opcion === 'solo-yo') {
+            resultado.style.backgroundColor = '#f39c12';
+            resultado.style.color = 'white';
+            resultado.innerHTML = '⚠️ Es seguro, pero muy restrictivo. "Solo Amigos" es un buen equilibrio.';
+        } else {
+            resultado.style.backgroundColor = '#e74c3c';
+            resultado.style.color = 'white';
+            resultado.innerHTML = '❌ Riesgoso. Cualquiera puede ver tu información.';
+        }
+    }
+    </script>
+</body>
+</html>
