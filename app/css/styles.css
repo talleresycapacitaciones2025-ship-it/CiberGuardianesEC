@@ -1,0 +1,340 @@
+/* ========================================
+   CiberGuardianesEC - Estilos Mejorados v2.0
+   Diseño moderno, colorido y responsive
+   ======================================== */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    min-height: 100vh;
+    padding: 20px;
+    line-height: 1.6;
+}
+
+header {
+    background: linear-gradient(135deg, #2c3e50 0%, #3498db 100%);
+    color: white;
+    padding: 30px 20px;
+    text-align: center;
+    border-radius: 15px;
+    margin-bottom: 25px;
+    box-shadow: 0 8px 20px rgba(0,0,0,0.2);
+}
+
+header h1 {
+    font-size: 2.2em;
+    margin-bottom: 10px;
+    text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+}
+
+header p {
+    font-size: 1.1em;
+    opacity: 0.9;
+}
+
+main {
+    background-color: white;
+    padding: 30px;
+    border-radius: 15px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.15);
+    max-width: 900px;
+    margin: 0 auto;
+}
+
+section {
+    margin-bottom: 35px;
+}
+
+h2 {
+    color: #2c3e50;
+    font-size: 1.8em;
+    margin-bottom: 15px;
+    border-bottom: 3px solid #3498db;
+    padding-bottom: 10px;
+}
+
+h3 {
+    color: #34495e;
+    font-size: 1.4em;
+    margin-bottom: 12px;
+}
+
+h4 {
+    color: #2c3e50;
+    font-size: 1.2em;
+    margin-bottom: 10px;
+}
+
+/* Botones mejorados */
+button {
+    padding: 12px 25px;
+    font-size: 16px;
+    font-weight: bold;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    margin: 5px;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+}
+
+button:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 12px rgba(0,0,0,0.2);
+}
+
+button:active {
+    transform: translateY(0);
+}
+
+/* Inputs mejorados */
+input[type="text"],
+input[type="email"],
+input[type="password"] {
+    padding: 12px 15px;
+    font-size: 16px;
+    border: 2px solid #3498db;
+    border-radius: 8px;
+    width: 100%;
+    max-width: 400px;
+    transition: border-color 0.3s ease;
+}
+
+input:focus {
+    outline: none;
+    border-color: #9b59b6;
+    box-shadow: 0 0 8px rgba(155, 89, 182, 0.3);
+}
+
+/* Cajas de ejemplos */
+.correo-ejemplo,
+.tienda-ejemplo,
+.privacidad-ejemplo {
+    border: 2px solid #3498db;
+    padding: 20px;
+    margin: 20px 0;
+    border-radius: 12px;
+    background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+    box-shadow: 0 4px 10px rgba(0,0,0,0.08);
+    transition: transform 0.3s ease;
+}
+
+.correo-ejemplo:hover,
+.tienda-ejemplo:hover,
+.privacidad-ejemplo:hover {
+    transform: scale(1.02);
+}
+
+/* Resultados dinámicos */
+#resultado,
+[id^="resultado-"] {
+    margin-top: 15px;
+    padding: 15px;
+    border-radius: 8px;
+    font-weight: bold;
+    animation: fadeIn 0.5s ease;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(-10px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+/* Navegación */
+.navegacion {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 30px;
+    padding-top: 20px;
+    border-top: 2px solid #ecf0f1;
+    flex-wrap: wrap;
+    gap: 10px;
+}
+
+.navegacion a {
+    color: #3498db;
+    text-decoration: none;
+    padding: 10px 20px;
+    background-color: #ecf0f1;
+    border-radius: 8px;
+    transition: all 0.3s ease;
+    font-weight: bold;
+}
+
+.navegacion a:hover {
+    background-color: #3498db;
+    color: white;
+    transform: translateX(5px);
+}
+
+/* Footer */
+footer {
+    text-align: center;
+    margin-top: 30px;
+    padding: 20px;
+    color: white;
+    font-size: 0.9em;
+    opacity: 0.9;
+}
+
+/* Opciones de modo (página de inicio) */
+.opcion {
+    border: 3px solid #3498db;
+    padding: 25px;
+    margin: 15px 0;
+    border-radius: 12px;
+    text-align: center;
+    background: linear-gradient(135deg, #ffffff 0%, #f8f9fa 100%);
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+}
+
+.opcion:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 20px rgba(0,0,0,0.15);
+    border-color: #9b59b6;
+}
+
+.opcion h3 {
+    color: #2c3e50;
+    margin-bottom: 10px;
+}
+
+/* Botones de acción */
+.boton,
+a[href*="modulos"] {
+    display: inline-block;
+    padding: 12px 25px;
+    background: linear-gradient(135deg, #3498db 0%, #2980b9 100%);
+    color: white;
+    text-decoration: none;
+    border-radius: 8px;
+    margin: 10px 5px;
+    font-weight: bold;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+}
+
+.boton:hover,
+a[href*="modulos"]:hover {
+    background: linear-gradient(135deg, #2980b9 0%, #3498db 100%);
+    transform: translateY(-3px);
+    box-shadow: 0 6px 12px rgba(0,0,0,0.2);
+}
+
+/* Listas con estilo */
+ul {
+    list-style: none;
+    padding-left: 0;
+}
+
+ul li {
+    padding: 8px 0;
+    padding-left: 30px;
+    position: relative;
+}
+
+ul li:before {
+    content: "✓";
+    position: absolute;
+    left: 0;
+    color: #2ecc71;
+    font-weight: bold;
+}
+
+/* Estadísticas y consejos */
+.estadisticas {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    color: white;
+    padding: 20px;
+    border-radius: 12px;
+    margin: 20px 0;
+}
+
+.estadisticas h3 {
+    color: white;
+    border-bottom: 2px solid rgba(255,255,255,0.3);
+    padding-bottom: 10px;
+}
+
+.estadisticas ul li:before {
+    color: #f1c40f;
+}
+
+.consejos-rapidos {
+    background: linear-gradient(135deg, #f39c12 0%, #e67e22 100%);
+    color: white;
+    padding: 20px;
+    border-radius: 12px;
+    margin: 20px 0;
+    border-left: 5px solid #d35400;
+}
+
+.consejos-rapidos h3 {
+    color: white;
+}
+
+/* Responsive para celulares */
+@media (max-width: 600px) {
+    body {
+        padding: 10px;
+    }
+    
+    header {
+        padding: 20px 15px;
+    }
+    
+    header h1 {
+        font-size: 1.6em;
+    }
+    
+    main {
+        padding: 20px 15px;
+    }
+    
+    h2 {
+        font-size: 1.4em;
+    }
+    
+    .navegacion {
+        flex-direction: column;
+    }
+    
+    .navegacion a {
+        text-align: center;
+        width: 100%;
+    }
+    
+    button {
+        width: 100%;
+        margin: 5px 0;
+    }
+    
+    input[type="text"],
+    input[type="email"],
+    input[type="password"] {
+        width: 100%;
+    }
+}
+
+/* Colores específicos para estados */
+.fuerte, .correcto {
+    background: linear-gradient(135deg, #2ecc71 0%, #27ae60 100%);
+    color: white;
+}
+
+.debil, .incorrecto {
+    background: linear-gradient(135deg, #e74c3c 0%, #c0392b 100%);
+    color: white;
+}
+
+.advertencia {
+    background: linear-gradient(135deg, #f39c12 0%, #e67e22 100%);
+    color: white;
+}
