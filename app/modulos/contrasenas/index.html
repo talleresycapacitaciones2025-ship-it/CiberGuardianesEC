@@ -2,127 +2,58 @@
 <html lang="es">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>Módulo 1: Contraseñas Seguras</title>
     <link rel="stylesheet" href="../../../css/styles.css">
     <style>
-    .situacion-card {
-        background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
-        border-left: 5px solid #3498db;
-        padding: 20px;
-        margin: 20px 0;
-        border-radius: 10px;
-        box-shadow: 0 3px 10px rgba(0,0,0,0.1);
-    }
-    .situacion-card h4 {
-        margin: 0 0 10px 0;
-        color: #2c3e50;
-        font-size: 1.2em;
-    }
-    .situacion-card p {
-        margin: 8px 0;
-        line-height: 1.5;
-    }
-    .opciones-container {
-        display: flex;
-        gap: 10px;
-        margin-top: 15px;
-        flex-wrap: wrap;
-    }
-    .opcion-btn {
-        padding: 10px 20px;
-        border: none;
-        border-radius: 6px;
-        cursor: pointer;
-        font-weight: bold;
-        font-size: 14px;
-        transition: all 0.3s ease;
-        color: white;
-        flex: 1;
-        min-width: 150px;
-    }
-    .opcion-btn:hover:not(:disabled) {
-        transform: translateY(-2px);
-        box-shadow: 0 4px 8px rgba(0,0,0,0.2);
-    }
-    .opcion-btn:disabled {
-        opacity: 0.6;
-        cursor: not-allowed;
-    }
-    .btn-1 { background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); }
-    .btn-2 { background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%); }
-    .btn-3 { background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%); }
-    .btn-4 { background: linear-gradient(135deg, #43e97b 0%, #38f9d7 100%); }
-    .resultado {
-        margin-top: 12px;
-        padding: 12px;
-        border-radius: 6px;
-        font-weight: bold;
-        display: none;
-        animation: fadeIn 0.4s ease;
-    }
-    @keyframes fadeIn {
-        from { opacity: 0; transform: translateY(-10px); }
-        to { opacity: 1; transform: translateY(0); }
-    }
-    .btn-recargar {
-        background: linear-gradient(135deg, #fa709a 0%, #fee140 100%);
-        color: white;
-        padding: 12px 25px;
-        border: none;
-        border-radius: 8px;
-        cursor: pointer;
-        font-weight: bold;
-        font-size: 15px;
-        width: 100%;
-        margin-top: 20px;
-        transition: all 0.3s ease;
-    }
-    .btn-recargar:hover {
-        transform: translateY(-2px);
-        box-shadow: 0 6px 12px rgba(0,0,0,0.2);
-    }
-    .btn-intentar {
-        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-        color: white;
-        padding: 10px 20px;
-        border: none;
-        border-radius: 6px;
-        cursor: pointer;
-        font-weight: bold;
-        margin-top: 10px;
-        transition: all 0.3s ease;
-    }
-    .btn-intentar:hover {
-        transform: translateY(-2px);
-        box-shadow: 0 4px 8px rgba(0,0,0,0.2);
-    }
-    .nav-buttons {
-        display: flex;
-        gap: 15px;
-        margin-top: 30px;
-        flex-wrap: wrap;
-    }
-    .nav-btn {
-        flex: 1;
-        min-width: 200px;
-        padding: 12px 25px;
-        background: linear-gradient(135deg, #3498db 0%, #2980b9 100%);
-        color: white;
-        text-decoration: none;
-        border-radius: 8px;
-        text-align: center;
-        font-weight: bold;
-        transition: all 0.3s ease;
-        display: inline-block;
-    }
-    .nav-btn:hover {
-        transform: translateY(-2px);
-        box-shadow: 0 6px 12px rgba(0,0,0,0.2);
-    }
-    .nav-btn.secundario {
-        background: linear-gradient(135deg, #95a5a6 0%, #7f8c8d 100%);
-    }
+    *{margin:0;padding:0;box-sizing:border-box}
+    body{font-family:'Segoe UI',Tahoma,Geneva,Verdana,sans-serif;background:linear-gradient(135deg,#667eea 0%,#764ba2 100%);min-height:100vh;padding:20px}
+    header{background:linear-gradient(135deg,#2c3e50 0%,#3498db 100%);color:white;padding:25px 20px;text-align:center;border-radius:15px;margin-bottom:25px;box-shadow:0 8px 20px rgba(0,0,0,0.2)}
+    header h1{font-size:1.8em;margin-bottom:8px}
+    header p{font-size:1em;opacity:0.95}
+    main{background:white;padding:30px 25px;border-radius:15px;box-shadow:0 10px 30px rgba(0,0,0,0.15);max-width:800px;margin:0 auto}
+    h2{color:#2c3e50;font-size:1.5em;margin-bottom:15px;border-bottom:3px solid #3498db;padding-bottom:10px}
+    h3{color:#34495e;font-size:1.3em;margin:20px 0 15px 0}
+    .progreso-bar{background:#ecf0f1;border-radius:10px;padding:10px 15px;margin-bottom:20px;box-shadow:0 2px 5px rgba(0,0,0,0.1)}
+    .progreso-text{display:flex;justify-content:space-between;margin-bottom:8px;font-weight:bold;color:#2c3e50}
+    .progreso-fill{height:10px;background:linear-gradient(135deg,#3498db 0%,#2980b9 100%);border-radius:5px;transition:width 0.5s ease}
+    .situacion-card{background:linear-gradient(135deg,#f8f9fa 0%,#e9ecef 100%);border-left:5px solid #3498db;padding:20px;margin:20px 0;border-radius:10px;box-shadow:0 3px 10px rgba(0,0,0,0.1)}
+    .situacion-card h4{margin:0 0 10px 0;color:#2c3e50;font-size:1.2em}
+    .situacion-card p{margin:8px 0;line-height:1.5}
+    .opciones-container{display:flex;gap:10px;margin-top:15px;flex-wrap:wrap}
+    .opcion-btn{padding:10px 20px;border:none;border-radius:6px;cursor:pointer;font-weight:bold;font-size:14px;transition:all 0.3s ease;color:white;flex:1;min-width:150px}
+    .opcion-btn:hover:not(:disabled){transform:translateY(-2px);box-shadow:0 4px 8px rgba(0,0,0,0.2)}
+    .opcion-btn:disabled{opacity:0.6;cursor:not-allowed}
+    .btn-1{background:linear-gradient(135deg,#667eea 0%,#764ba2 100%)}
+    .btn-2{background:linear-gradient(135deg,#f093fb 0%,#f5576c 100%)}
+    .btn-3{background:linear-gradient(135deg,#4facfe 0%,#00f2fe 100%)}
+    .btn-4{background:linear-gradient(135deg,#43e97b 0%,#38f9d7 100%)}
+    .resultado{margin-top:12px;padding:12px;border-radius:6px;font-weight:bold;display:none;animation:fadeIn 0.4s ease}
+    @keyframes fadeIn{from{opacity:0;transform:translateY(-10px)}to{opacity:1;transform:translateY(0)}}
+    .btn-recargar{background:linear-gradient(135deg,#fa709a 0%,#fee140 100%);color:white;padding:12px 25px;border:none;border-radius:8px;cursor:pointer;font-weight:bold;font-size:15px;width:100%;margin-top:20px;transition:all 0.3s ease}
+    .btn-recargar:hover{transform:translateY(-2px);box-shadow:0 6px 12px rgba(0,0,0,0.2)}
+    .btn-intentar{background:linear-gradient(135deg,#667eea 0%,#764ba2 100%);color:white;padding:10px 20px;border:none;border-radius:6px;cursor:pointer;font-weight:bold;margin-top:10px;transition:all 0.3s ease}
+    .btn-intentar:hover{transform:translateY(-2px);box-shadow:0 4px 8px rgba(0,0,0,0.2)}
+    .btn-guardar{background:linear-gradient(135deg,#f39c12 0%,#e67e22 100%);color:white;padding:12px 25px;border:none;border-radius:8px;cursor:pointer;font-weight:bold;font-size:15px;width:100%;margin-top:15px;transition:all 0.3s ease}
+    .btn-guardar:hover{transform:translateY(-2px);box-shadow:0 6px 12px rgba(0,0,0,0.2)}
+    .nav-buttons{display:flex;gap:15px;margin-top:30px;flex-wrap:wrap}
+    .nav-btn{flex:1;min-width:200px;padding:12px 25px;background:linear-gradient(135deg,#3498db 0%,#2980b9 100%);color:white;text-decoration:none;border-radius:8px;text-align:center;font-weight:bold;transition:all 0.3s ease;display:inline-block}
+    .nav-btn:hover{transform:translateY(-2px);box-shadow:0 6px 12px rgba(0,0,0,0.2)}
+    .nav-btn.secundario{background:linear-gradient(135deg,#95a5a6 0%,#7f8c8d 100%)}
+    .modal-completado{display:none;position:fixed;top:0;left:0;width:100%;height:100%;background:rgba(0,0,0,0.7);z-index:1000;justify-content:center;align-items:center;animation:fadeIn 0.3s ease}
+    .modal-contenido{background:white;padding:30px;border-radius:15px;text-align:center;max-width:400px;width:90%;box-shadow:0 10px 30px rgba(0,0,0,0.3)}
+    .modal-contenido h3{color:#2c3e50;font-size:1.5em;margin-bottom:15px;border:none}
+    .modal-contenido p{color:#7f8c8d;margin-bottom:20px;line-height:1.6}
+    .modal-botones{display:flex;flex-direction:column;gap:10px}
+    .modal-btn{padding:14px 20px;border:none;border-radius:8px;cursor:pointer;font-weight:bold;font-size:1em;transition:all 0.3s ease}
+    .modal-btn-continuar{background:linear-gradient(135deg,#43e97b 0%,#38f9d7 100%);color:white}
+    .modal-btn-guardar{background:linear-gradient(135deg,#667eea 0%,#764ba2 100%);color:white}
+    .modal-btn:hover{transform:translateY(-2px);box-shadow:0 6px 12px rgba(0,0,0,0.2)}
+    ul{list-style:none;padding-left:0}
+    ul li{padding:8px 0;padding-left:30px;position:relative}
+    ul li:before{content:"✓";position:absolute;left:0;color:#2ecc71;font-weight:bold}
+    footer{text-align:center;margin-top:25px;padding:15px;color:white;font-size:0.9em;opacity:0.9}
+    @media(max-width:600px){.nav-buttons{flex-direction:column}.nav-btn{width:100%}.modal-botones{flex-direction:column}}
     </style>
 </head>
 <body>
@@ -130,19 +61,21 @@
         <h1>🔐 Módulo 1: Contraseñas Seguras</h1>
         <p>Aprende a crear contraseñas que los hackers no puedan adivinar</p>
     </header>
-    
     <main>
         <section class="intro">
             <h2>¿Tu contraseña es fuerte?</h2>
             <p>Una contraseña segura es tu primera línea de defensa contra los ciberdelincuentes.</p>
         </section>
-        
+        <div class="progreso-bar">
+            <div class="progreso-text"><span>📊 Progreso del Módulo</span><span id="progreso-numero">0/4 completadas</span></div>
+            <div class="progreso-fill" id="progreso-barra" style="width: 0%;"></div>
+        </div>
         <section class="juego">
             <h3>🎮 Desafío: Verifica contraseñas</h3>
             <div id="contenedor-preguntas"></div>
             <button onclick="cargarNuevasPreguntas()" class="btn-recargar">🔄 Ver otras situaciones</button>
+            <button onclick="guardarProgresoManual()" class="btn-guardar">💾 Guardar mi progreso</button>
         </section>
-        
         <section class="aprende">
             <h3>✅ Consejos para Contraseñas Seguras:</h3>
             <ul>
@@ -153,124 +86,125 @@
                 <li>Activa la autenticación de dos factores</li>
             </ul>
         </section>
-        
         <div class="nav-buttons">
             <a href="../../../index.html" class="nav-btn secundario">← Volver al inicio</a>
             <a href="../phishing/" class="nav-btn">Siguiente módulo: Phishing →</a>
         </div>
     </main>
-    
-    <footer>
-        <p>Hecho con 💙 para Ecuador | CiberGuardianesEC</p>
-    </footer>
-    
+    <footer><p>Hecho con 💙 para Ecuador | CiberGuardianesEC</p></footer>
+    <div class="modal-completado" id="modal-completado">
+        <div class="modal-contenido">
+            <h3>🎉 ¡Módulo Completado!</h3>
+            <p>Has respondido todas las preguntas de este módulo.</p>
+            <p><strong>¿Qué quieres hacer ahora?</strong></p>
+            <div class="modal-botones">
+                <button class="modal-btn modal-btn-continuar" onclick="continuarSiguienteModulo()">➡️ Ir al siguiente módulo</button>
+                <button class="modal-btn modal-btn-guardar" onclick="guardarYSalir()">💾 Guardar progreso y salir</button>
+            </div>
+        </div>
+    </div>
     <script>
-    const bancoPreguntas = [
-        { id: 1, icono: "🔑", situacion: "Tu contraseña es '123456'", opciones: [{ texto: "Está bien, es fácil de recordar", valor: "bien", correcta: false }, { texto: "Cambiarla por una más fuerte", valor: "cambiar", correcta: true }], tip: "'123456' es la contraseña más común y fácil de crackear en menos de 1 segundo." },
-        { id: 2, icono: "🔑", situacion: "Usas la misma contraseña para todo", opciones: [{ texto: "Es práctico, no hay problema", valor: "practico", correcta: false }, { texto: "Usar contraseñas diferentes", valor: "diferentes", correcta: true }], tip: "Cada cuenta debe tener su propia contraseña única. Si hackean una, tendrán acceso a todas." },
-        { id: 3, icono: "🔑", situacion: "Tu contraseña es 'Maria2000' (tu nombre y año)", opciones: [{ texto: "Es segura porque tiene números", valor: "segura", correcta: false }, { texto: "Cambiarla por algo sin datos personales", valor: "cambiar", correcta: true }], tip: "Nunca uses información personal en contraseñas. Es muy fácil de adivinar." },
-        { id: 4, icono: "🔑", situacion: "Tu contraseña es 'P@ssw0rd!2024#'", opciones: [{ texto: "Es muy segura", valor: "segura", correcta: true }, { texto: "Debería ser más corta", valor: "corta", correcta: false }], tip: "¡Excelente! Tiene 16 caracteres, mayúsculas, minúsculas, números y símbolos." },
-        { id: 5, icono: "🔑", situacion: "Un amigo te pide tu contraseña para 'ayudarte'", opciones: [{ texto: "Dársela porque es mi amigo", valor: "dar", correcta: false }, { texto: "Negarme amablemente", valor: "negar", correcta: true }], tip: "Las contraseñas son personales, NUNCA las compartas con nadie." },
-        { id: 6, icono: "🔑", situacion: "El banco te pide tu contraseña por email", opciones: [{ texto: "Enviársela", valor: "enviar", correcta: false }, { texto: "Reportar como phishing", valor: "reportar", correcta: true }], tip: "Es una estafa. Los bancos NUNCA piden contraseñas por correo electrónico." },
-        { id: 7, icono: "🔑", situacion: "Tu contraseña tiene 8 caracteres", opciones: [{ texto: "Está bien así", valor: "bien", correcta: false }, { texto: "Agregar más caracteres", valor: "agregar", correcta: true }], tip: "8 caracteres es el mínimo, pero 12+ es mucho más seguro." },
-        { id: 8, icono: "🔑", situacion: "Usas un gestor de contraseñas", opciones: [{ texto: "Es una buena práctica", valor: "bien", correcta: true }, { texto: "Es peligroso", valor: "peligro", correcta: false }], tip: "Los gestores como LastPass o Bitwarden son recomendados y seguros." },
-        { id: 9, icono: "🔑", situacion: "Activas la autenticación de dos factores", opciones: [{ texto: "Es innecesario", valor: "innecesario", correcta: false }, { texto: "Es muy recomendable", valor: "recomendable", correcta: true }], tip: "El 2FA es una de las mejores protecciones que puedes activar." },
-        { id: 10, icono: "🔑", situacion: "Tu contraseña es 'password'", opciones: [{ texto: "Es clásica, funciona", valor: "clasica", correcta: false }, { texto: "Cambiarla inmediatamente", valor: "cambiar", correcta: true }], tip: "'password' es la segunda contraseña más común del mundo. Cámbiala ya." }
+    const bancoPreguntas=[
+        {id:1,icono:"🔑",situacion:"Tu contraseña es '123456'",opciones:[{texto:"Está bien, es fácil de recordar",valor:"bien",correcta:false},{texto:"Cambiarla por una más fuerte",valor:"cambiar",correcta:true}],tip:"'123456' es la contraseña más común y fácil de crackear en menos de 1 segundo."},
+        {id:2,icono:"🔑",situacion:"Usas la misma contraseña para todo",opciones:[{texto:"Es práctico, no hay problema",valor:"practico",correcta:false},{texto:"Usar contraseñas diferentes",valor:"diferentes",correcta:true}],tip:"Cada cuenta debe tener su propia contraseña única. Si hackean una, tendrán acceso a todas."},
+        {id:3,icono:"🔑",situacion:"Tu contraseña es 'Maria2000' (tu nombre y año)",opciones:[{texto:"Es segura porque tiene números",valor:"segura",correcta:false},{texto:"Cambiarla por algo sin datos personales",valor:"cambiar",correcta:true}],tip:"Nunca uses información personal en contraseñas. Es muy fácil de adivinar."},
+        {id:4,icono:"🔑",situacion:"Tu contraseña es 'P@ssw0rd!2024#'",opciones:[{texto:"Es muy segura",valor:"segura",correcta:true},{texto:"Debería ser más corta",valor:"corta",correcta:false}],tip:"¡Excelente! Tiene 16 caracteres, mayúsculas, minúsculas, números y símbolos."},
+        {id:5,icono:"🔑",situacion:"Un amigo te pide tu contraseña para 'ayudarte'",opciones:[{texto:"Dársela porque es mi amigo",valor:"dar",correcta:false},{texto:"Negarme amablemente",valor:"negar",correcta:true}],tip:"Las contraseñas son personales, NUNCA las compartas con nadie."},
+        {id:6,icono:"🔑",situacion:"El banco te pide tu contraseña por email",opciones:[{texto:"Enviársela",valor:"enviar",correcta:false},{texto:"Reportar como phishing",valor:"reportar",correcta:true}],tip:"Es una estafa. Los bancos NUNCA piden contraseñas por correo electrónico."},
+        {id:7,icono:"🔑",situacion:"Tu contraseña tiene 8 caracteres",opciones:[{texto:"Está bien así",valor:"bien",correcta:false},{texto:"Agregar más caracteres",valor:"agregar",correcta:true}],tip:"8 caracteres es el mínimo, pero 12+ es mucho más seguro."},
+        {id:8,icono:"🔑",situacion:"Usas un gestor de contraseñas",opciones:[{texto:"Es una buena práctica",valor:"bien",correcta:true},{texto:"Es peligroso",valor:"peligro",correcta:false}],tip:"Los gestores como LastPass o Bitwarden son recomendados y seguros."},
+        {id:9,icono:"🔑",situacion:"Activas la autenticación de dos factores",opciones:[{texto:"Es innecesario",valor:"innecesario",correcta:false},{texto:"Es muy recomendable",valor:"recomendable",correcta:true}],tip:"El 2FA es una de las mejores protecciones que puedes activar."},
+        {id:10,icono:"🔑",situacion:"Tu contraseña es 'password'",opciones:[{texto:"Es clásica, funciona",valor:"clasica",correcta:false},{texto:"Cambiarla inmediatamente",valor:"cambiar",correcta:true}],tip:"'password' es la segunda contraseña más común del mundo. Cámbiala ya."}
     ];
-    
-    let preguntasUsadas = [];
-    
-    function seleccionarAleatorias(banco, cantidad) {
-        const disponibles = banco.filter(p => !preguntasUsadas.includes(p.id));
-        if (disponibles.length < cantidad) {
-            preguntasUsadas = [];
+    let preguntasUsadas=[];
+    let preguntasRespondidas=0;
+    const TOTAL_PREGUNTAS_MODULO=4;
+    const NOMBRE_MODULO="modulo1_contraseñas";
+    window.onload=function(){
+        const progresoGuardado=localStorage.getItem('ciberGuardianes_progreso');
+        if(progresoGuardado){
+            const datos=JSON.parse(progresoGuardado);
+            if(datos.modulo===NOMBRE_MODULO&&datos.respondidas<TOTAL_PREGUNTAS_MODULO){
+                preguntasUsadas=datos.preguntasUsadas||[];
+                preguntasRespondidas=datos.respondidas||0;
+                actualizarBarraProgreso();
+            }
         }
-        const mezclado = [...banco].filter(p => !preguntasUsadas.includes(p.id));
-        for (let i = mezclado.length - 1; i > 0; i--) {
-            const j = Math.floor(Math.random() * (i + 1));
-            [mezclado[i], mezclado[j]] = [mezclado[j], mezclado[i]];
-        }
-        return mezclado.slice(0, cantidad);
+        cargarNuevasPreguntas();
+    };
+    function seleccionarAleatorias(banco,cantidad){
+        const disponibles=banco.filter(p=>!preguntasUsadas.includes(p.id));
+        if(disponibles.length<cantidad){preguntasUsadas=[];}
+        const mezclado=[...banco].filter(p=>!preguntasUsadas.includes(p.id));
+        for(let i=mezclado.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[mezclado[i],mezclado[j]]=[mezclado[j],mezclado[i]];}
+        return mezclado.slice(0,cantidad);
     }
-    
-    function cargarNuevasPreguntas() {
-        const contenedor = document.getElementById('contenedor-preguntas');
-        contenedor.innerHTML = '';
-        const seleccionadas = seleccionarAleatorias(bancoPreguntas, 4);
-        
-        seleccionadas.forEach((p) => {
+    function cargarNuevasPreguntas(){
+        const contenedor=document.getElementById('contenedor-preguntas');
+        contenedor.innerHTML='';
+        const seleccionadas=seleccionarAleatorias(bancoPreguntas,4);
+        seleccionadas.forEach((p)=>{
             preguntasUsadas.push(p.id);
-            const html = `
-                <div class="situacion-card" id="card-${p.id}">
-                    <h4>${p.icono} ${p.situacion}</h4>
-                    <div class="opciones-container" id="opciones-${p.id}">
-                        ${p.opciones.map((op, i) => `
-                            <button class="opcion-btn btn-${i+1}" onclick="verificar(${p.id}, '${op.valor}', this)">
-                                ${op.texto}
-                            </button>
-                        `).join('')}
-                    </div>
-                    <div id="resultado-${p.id}" class="resultado"></div>
-                </div>
-            `;
-            contenedor.innerHTML += html;
+            const html=`<div class="situacion-card" id="card-${p.id}"><h4>${p.icono} ${p.situacion}</h4><div class="opciones-container" id="opciones-${p.id}">${p.opciones.map((op,i)=>`<button class="opcion-btn btn-${i+1}" onclick="verificar(${p.id}, '${op.valor}', this)">${op.texto}</button>`).join('')}</div><div id="resultado-${p.id}" class="resultado"></div></div>`;
+            contenedor.innerHTML+=html;
         });
     }
-    
-    function verificar(id, valor, boton) {
-        const pregunta = bancoPreguntas.find(p => p.id === id);
-        const resultado = document.getElementById(`resultado-${id}`);
-        const opcionesDiv = document.getElementById(`opciones-${id}`);
-        const opciones = opcionesDiv.querySelectorAll('.opcion-btn');
-        
-        opciones.forEach(btn => btn.disabled = true);
-        
-        const opcionCorrecta = pregunta.opciones.find(op => op.valor === valor);
-        if (opcionCorrecta && opcionCorrecta.correcta) {
-            resultado.className = 'resultado';
-            resultado.style.background = 'linear-gradient(135deg, #43e97b 0%, #38f9d7 100%)';
-            resultado.style.color = 'white';
-            resultado.innerHTML = `✅ ¡CORRECTO!<br><br>💡 <strong>TIP:</strong> ${pregunta.tip}`;
-        } else {
-            resultado.className = 'resultado';
-            resultado.style.background = 'linear-gradient(135deg, #fa709a 0%, #fee140 100%)';
-            resultado.style.color = 'white';
-            resultado.innerHTML = `❌ Incorrecto.<br><br>💡 <strong>TIP:</strong> ${pregunta.tip}<br><button class="btn-intentar" onclick="intentarDeNuevo(${id})">🔄 Volver a intentar</button>`;
+    function verificar(id,valor,boton){
+        const pregunta=bancoPreguntas.find(p=>p.id===id);
+        const resultado=document.getElementById(`resultado-${id}`);
+        const opcionesDiv=document.getElementById(`opciones-${id}`);
+        const opciones=opcionesDiv.querySelectorAll('.opcion-btn');
+        opciones.forEach(btn=>btn.disabled=true);
+        const opcionCorrecta=pregunta.opciones.find(op=>op.valor===valor);
+        if(opcionCorrecta&&opcionCorrecta.correcta){
+            resultado.className='resultado';
+            resultado.style.background='linear-gradient(135deg, #43e97b 0%, #38f9d7 100%)';
+            resultado.style.color='white';
+            resultado.innerHTML=`✅ ¡CORRECTO!<br><br>💡 <strong>TIP:</strong> ${pregunta.tip}`;
+        }else{
+            resultado.className='resultado';
+            resultado.style.background='linear-gradient(135deg, #fa709a 0%, #fee140 100%)';
+            resultado.style.color='white';
+            resultado.innerHTML=`❌ Incorrecto.<br><br>💡 <strong>TIP:</strong> ${pregunta.tip}<br><button class="btn-intentar" onclick="intentarDeNuevo(${id})">🔄 Volver a intentar</button>`;
         }
-        resultado.style.display = 'block';
+        resultado.style.display='block';
+        preguntasRespondidas++;
+        actualizarBarraProgreso();
+        guardarProgresoAutomatico();
+        if(preguntasRespondidas>=TOTAL_PREGUNTAS_MODULO){setTimeout(()=>{document.getElementById('modal-completado').style.display='flex';},1500);}
     }
-    
-    function intentarDeNuevo(id) {
-        const card = document.getElementById(`card-${id}`);
-        const preguntaOriginal = bancoPreguntas.find(p => p.id === id);
-        
-        const disponibles = bancoPreguntas.filter(p => p.id !== id && !preguntasUsadas.includes(p.id));
-        if (disponibles.length === 0) {
-            preguntasUsadas = [];
-        }
-        
-        const nuevaPregunta = disponibles.length > 0 
-            ? disponibles[Math.floor(Math.random() * disponibles.length)]
-            : bancoPreguntas[Math.floor(Math.random() * bancoPreguntas.length)];
-        
+    function intentarDeNuevo(id){
+        const card=document.getElementById(`card-${id}`);
+        const disponibles=bancoPreguntas.filter(p=>p.id!==id&&!preguntasUsadas.includes(p.id));
+        if(disponibles.length===0){preguntasUsadas=[];}
+        const nuevaPregunta=disponibles.length>0?disponibles[Math.floor(Math.random()*disponibles.length)]:bancoPreguntas[Math.floor(Math.random()*bancoPreguntas.length)];
         preguntasUsadas.push(nuevaPregunta.id);
-        
-        card.innerHTML = `
-            <h4>${nuevaPregunta.icono} ${nuevaPregunta.situacion}</h4>
-            <div class="opciones-container" id="opciones-${nuevaPregunta.id}">
-                ${nuevaPregunta.opciones.map((op, i) => `
-                    <button class="opcion-btn btn-${i+1}" onclick="verificar(${nuevaPregunta.id}, '${op.valor}', this)">
-                        ${op.texto}
-                    </button>
-                `).join('')}
-            </div>
-            <div id="resultado-${nuevaPregunta.id}" class="resultado"></div>
-        `;
-        
-        card.id = `card-${nuevaPregunta.id}`;
+        card.innerHTML=`<h4>${nuevaPregunta.icono} ${nuevaPregunta.situacion}</h4><div class="opciones-container" id="opciones-${nuevaPregunta.id}">${nuevaPregunta.opciones.map((op,i)=>`<button class="opcion-btn btn-${i+1}" onclick="verificar(${nuevaPregunta.id}, '${op.valor}', this)">${op.texto}</button>`).join('')}</div><div id="resultado-${nuevaPregunta.id}" class="resultado"></div>`;
+        card.id=`card-${nuevaPregunta.id}`;
     }
-    
-    window.onload = cargarNuevasPreguntas;
+    function actualizarBarraProgreso(){
+        const porcentaje=(preguntasRespondidas/TOTAL_PREGUNTAS_MODULO)*100;
+        document.getElementById('progreso-barra').style.width=porcentaje+'%';
+        document.getElementById('progreso-numero').textContent=`${preguntasRespondidas}/${TOTAL_PREGUNTAS_MODULO} completadas`;
+    }
+    function guardarProgresoAutomatico(){
+        const progreso={modulo:NOMBRE_MODULO,preguntasUsadas:preguntasUsadas,respondidas:preguntasRespondidas,fecha:new Date().toISOString()};
+        localStorage.setItem('ciberGuardianes_progreso',JSON.stringify(progreso));
+    }
+    function guardarProgresoManual(){
+        guardarProgresoAutomatico();
+        alert('✅ ¡Progreso guardado exitosamente!\nPuedes salir y continuar más tarde.');
+    }
+    function guardarYSalir(){
+        guardarProgresoAutomatico();
+        document.getElementById('modal-completado').style.display='none';
+        alert('✅ ¡Progreso guardado!\nPuedes continuar desde la página de inicio.');
+        window.location.href='../../../index.html';
+    }
+    function continuarSiguienteModulo(){
+        localStorage.removeItem('ciberGuardianes_progreso');
+        window.location.href='../phishing/';
+    }
     </script>
 </body>
 </html>
