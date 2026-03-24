@@ -20,67 +20,23 @@
         
         <section class="juego">
             <h3>🎮 Desafío: Clasifica los mensajes</h3>
+            <p style="background-color: #fff3cd; padding: 15px; border-radius: 8px; border-left: 4px solid #ffa502; margin-bottom: 20px;">
+                💡 <strong>Nota:</strong> Cada vez que entres, verás 4 situaciones aleatorias de un banco de 10.
+            </p>
             
-            <div class="correo-ejemplo">
-                <h4>📧 Mensaje 1: Correo de "Banco"</h4>
-                <p><strong>De:</strong> "Banco Pichincha" &lt;seguridad@bancopichincha-verificacion.com&gt;</p>
-                <p><strong>Asunto:</strong> URGENTE: Tu cuenta será bloqueada</p>
-                <p><strong>Mensaje:</strong> "Estimado cliente, haga click aquí para verificar su cuenta o será bloqueada en 24 horas."</p>
-                
-                <div style="margin-top: 15px;">
-                    <button onclick="clasificarPhishing(1, 'phishing')" style="background-color: #e74c3c;">🚫 Es Phishing</button>
-                    <button onclick="clasificarPhishing(1, 'real')" style="background-color: #2ecc71;">✅ Es Real</button>
-                </div>
-                
-                <div id="resultado-1"></div>
-            </div>
+            <div id="contenedor-preguntas"></div>
             
-            <div class="correo-ejemplo">
-                <h4>📧 Mensaje 2: Estado de Cuenta</h4>
-                <p><strong>De:</strong> "Banco Pichincha" &lt;notificaciones@bancopichincha.com&gt;</p>
-                <p><strong>Asunto:</strong> Tu estado de cuenta está disponible</p>
-                <p><strong>Mensaje:</strong> "Ingresa a tu banca en línea para revisar tu estado de cuenta mensual."</p>
-                
-                <div style="margin-top: 15px;">
-                    <button onclick="clasificarPhishing(2, 'phishing')" style="background-color: #e74c3c;">🚫 Es Phishing</button>
-                    <button onclick="clasificarPhishing(2, 'real')" style="background-color: #2ecc71;">✅ Es Real</button>
-                </div>
-                
-                <div id="resultado-2"></div>
-            </div>
-            
-            <div class="correo-ejemplo">
-                <h4>📱 Mensaje 3: WhatsApp</h4>
-                <p><strong>De:</strong> Número desconocido (+593 99 123 4567)</p>
-                <p><strong>Mensaje:</strong> "Hola, soy del banco. Necesito que me confirmes tu clave de internet por seguridad."</p>
-                
-                <div style="margin-top: 15px;">
-                    <button onclick="clasificarPhishing(3, 'phishing')" style="background-color: #e74c3c;">🚫 Es Phishing</button>
-                    <button onclick="clasificarPhishing(3, 'real')" style="background-color: #2ecc71;">✅ Es Real</button>
-                </div>
-                
-                <div id="resultado-3"></div>
-            </div>
+            <button onclick="cargarNuevasPreguntas()" style="background-color: #9b59b6; margin-top: 20px; width: 100%;">🔄 Ver otras situaciones</button>
         </section>
         
         <section class="aprende">
             <h3>🔍 Señales de Alerta de Phishing:</h3>
             <ul>
-                <li>Urgencia excesiva ("actúa ahora o tu cuenta será bloqueada")</li>
-                <li>Remitente sospechoso (dominio diferente al oficial)</li>
+                <li>Urgencia excesiva</li>
+                <li>Remitente sospechoso</li>
                 <li>Piden contraseñas o datos sensibles</li>
-                <li>Enlaces acortados o extraños</li>
-                <li>Errores ortográficos o de gramática</li>
-                <li>Los bancos NUNCA piden contraseñas por mensaje</li>
-            </ul>
-        </section>
-        
-        <section class="estadisticas">
-            <h3>📊 Phishing en Ecuador:</h3>
-            <ul>
-                <li>El 60% de ecuatorianos ha recibido al menos un intento de phishing</li>
-                <li>El 25% ha hecho click en enlaces sospechosos</li>
-                <li>Las pérdidas por phishing superan los $50 millones anuales en Ecuador</li>
+                <li>Enlaces extraños</li>
+                <li>Errores ortográficos</li>
             </ul>
         </section>
         
@@ -94,24 +50,141 @@
         <p>Hecho con 💙 para Ecuador | CiberGuardianesEC</p>
     </footer>
     
+    <script src="../../../js/preguntas-aleatorias.js"></script>
     <script>
-    function clasificarPhishing(num, respuesta) {
-        const resultado = document.getElementById('resultado-' + num);
-        
-        const correctas = {
-            1: 'phishing',
-            2: 'real',
-            3: 'phishing'
-        };
-        
-        if (respuesta === correctas[num]) {
-            resultado.className = 'fuerte';
-            resultado.innerHTML = '✅ ¡CORRECTO! Bien identificado.';
-        } else {
-            resultado.className = 'debil';
-            resultado.innerHTML = '❌ Incorrecto. Revisa las señales de alerta.';
+    const bancoPreguntas = [
+        {
+            id: 1,
+            plataforma: "Email 1",
+            icono: "📧",
+            situacion: "Correo de 'Banco Pichincha' desde seguridad@bancopichincha-verificacion.com",
+            riesgo: "El dominio no es el oficial del banco.",
+            opciones: [
+                { texto: "Es legítimo", valor: "legitimo", correcta: false },
+                { texto: "Es phishing", valor: "phishing", correcta: true }
+            ],
+            explicacion: "El dominio oficial es @bancopichincha.com, no @bancopichincha-verificacion.com"
+        },
+        {
+            id: 2,
+            plataforma: "Email 2",
+            icono: "📧",
+            situacion: "Mensaje urgente: 'Tu cuenta será bloqueada en 24 horas'",
+            riesgo: "La urgencia excesiva es señal de phishing.",
+            opciones: [
+                { texto: "Actuar rápido", valor: "actuar", correcta: false },
+                { texto: "Verificar primero", valor: "verificar", correcta: true }
+            ],
+            explicacion: "Los bancos no amenazan con bloqueos inmediatos por email."
+        },
+        {
+            id: 3,
+            plataforma: "WhatsApp",
+            icono: "💬",
+            situacion: "Desconocido pide tu clave de internet 'por seguridad'",
+            riesgo: "Ningún banco pide claves por WhatsApp.",
+            opciones: [
+                { texto: "Enviársela", valor: "enviar", correcta: false },
+                { texto: "Bloquear y reportar", valor: "reportar", correcta: true }
+            ],
+            explicacion: "Los bancos NUNCA piden contraseñas por mensaje."
+        },
+        {
+            id: 4,
+            plataforma: "Email 4",
+            icono: "📧",
+            situacion: "Correo de notificaciones@bancopichincha.com sobre estado de cuenta",
+            riesgo: "El dominio es oficial y no pide datos sensibles.",
+            opciones: [
+                { texto: "Es legítimo", valor: "legitimo", correcta: true },
+                { texto: "Es phishing", valor: "phishing", correcta: false }
+            ],
+            explicacion: "El dominio es correcto y el mensaje es informativo, no pide acción."
+        },
+        {
+            id: 5,
+            plataforma: "SMS",
+            icono: "📱",
+            situacion: "SMS: 'Ganaste un premio, haz click aquí para reclamar'",
+            riesgo: "Premios no solicitados son estafas comunes.",
+            opciones: [
+                { texto: "Hacer click", valor: "click", correcta: false },
+                { texto: "Ignorar y borrar", valor: "borrar", correcta: true }
+            ],
+            explicacion: "Si no participaste en ningún sorteo, es estafa."
+        },
+        {
+            id: 6,
+            plataforma: "Email 6",
+            icono: "📧",
+            situacion: "Correo con errores ortográficos y gramaticales",
+            riesgo: "Las empresas serias revisan sus comunicaciones.",
+            opciones: [
+                { texto: "No importa, puede ser legítimo", valor: "importa", correcta: false },
+                { texto: "Es señal de phishing", valor: "phishing", correcta: true }
+            ],
+            explicacion: "Los errores son una bandera roja común en phishing."
+        },
+        {
+            id: 7,
+            plataforma: "Link",
+            icono: "🔗",
+            situacion: "Enlace acortado (bit.ly/xyz123) en correo del banco",
+            riesgo: "Los bancos no usan enlaces acortados.",
+            opciones: [
+                { texto: "Hacer click", valor: "click", correcta: false },
+                { texto: "No hacer click", valor: "no-click", correcta: true }
+            ],
+            explicacion: "Los enlaces acortados ocultan el destino real."
+        },
+        {
+            id: 8,
+            plataforma: "Email 8",
+            icono: "📧",
+            situacion: "Te piden actualizar datos haciendo click en un enlace",
+            riesgo: "Los bancos no piden actualizar datos por email.",
+            opciones: [
+                { texto: "Actualizar mis datos", valor: "actualizar", correcta: false },
+                { texto: "Ir directamente al banco", valor: "banco", correcta: true }
+            ],
+            explicacion: "Si necesitas actualizar algo, ve directamente a la web oficial."
+        },
+        {
+            id: 9,
+            plataforma: "Llamada",
+            icono: "📞",
+            situacion: "Llamada de 'soporte técnico' pidiendo acceso a tu computadora",
+            riesgo: "Es una estafa común para instalar malware.",
+            opciones: [
+                { texto: "Darles acceso", valor: "acceso", correcta: false },
+                { texto: "Colgar y reportar", valor: "reportar", correcta: true }
+            ],
+            explicacion: "Nunca des acceso remoto a desconocidos."
+        },
+        {
+            id: 10,
+            plataforma: "Email 10",
+            icono: "📧",
+            situacion: "Correo con archivo adjunto inesperado de desconocido",
+            riesgo: "Los adjuntos pueden contener malware.",
+            opciones: [
+                { texto: "Abrir el adjunto", valor: "abrir", correcta: false },
+                { texto: "No abrir y borrar", valor: "borrar", correcta: true }
+            ],
+            explicacion: "Nunca abras adjuntos de remitentes desconocidos."
         }
+    ];
+    
+    function cargarNuevasPreguntas() {
+        const preguntasSeleccionadas = seleccionarPreguntasAleatorias(bancoPreguntas, 4);
+        renderizarPreguntas(preguntasSeleccionadas, 'contenedor-preguntas', 'verificarRespuestaPhishing');
     }
+    
+    function verificarRespuestaPhishing(id, valor, boton) {
+        verificarRespuesta(id, valor, boton, bancoPreguntas);
+    }
+    
+    window.onload = cargarNuevasPreguntas;
     </script>
 </body>
 </html>
