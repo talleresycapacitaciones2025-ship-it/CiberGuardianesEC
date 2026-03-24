@@ -5,6 +5,85 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Módulo 1: Contraseñas Seguras</title>
     <link rel="stylesheet" href="../../../css/styles.css">
+    <style>
+    .situacion-card {
+        background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+        border-left: 5px solid #3498db;
+        padding: 20px;
+        margin: 20px 0;
+        border-radius: 10px;
+        box-shadow: 0 3px 10px rgba(0,0,0,0.1);
+    }
+    .situacion-card h4 {
+        margin: 0 0 10px 0;
+        color: #2c3e50;
+        font-size: 1.2em;
+    }
+    .situacion-card p {
+        margin: 8px 0;
+        line-height: 1.5;
+    }
+    .opciones-container {
+        display: flex;
+        gap: 10px;
+        margin-top: 15px;
+        flex-wrap: wrap;
+    }
+    .opcion-btn {
+        padding: 10px 20px;
+        border: none;
+        border-radius: 6px;
+        cursor: pointer;
+        font-weight: bold;
+        font-size: 14px;
+        transition: all 0.3s ease;
+        color: white;
+        flex: 1;
+        min-width: 150px;
+    }
+    .opcion-btn:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+    }
+    .opcion-btn:disabled {
+        opacity: 0.6;
+        cursor: not-allowed;
+        transform: none;
+    }
+    .btn-1 { background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); }
+    .btn-2 { background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%); }
+    .btn-3 { background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%); }
+    .btn-4 { background: linear-gradient(135deg, #43e97b 0%, #38f9d7 100%); }
+    .resultado {
+        margin-top: 12px;
+        padding: 12px;
+        border-radius: 6px;
+        font-weight: bold;
+        display: none;
+        animation: fadeIn 0.4s ease;
+    }
+    @keyframes fadeIn {
+        from { opacity: 0; transform: translateY(-10px); }
+        to { opacity: 1; transform: translateY(0); }
+    }
+    .btn-recargar {
+        background: linear-gradient(135deg, #fa709a 0%, #fee140 100%);
+        color: white;
+        padding: 12px 25px;
+        border: none;
+        border-radius: 8px;
+        cursor: pointer;
+        font-weight: bold;
+        font-size: 15px;
+        width: 100%;
+        margin-top: 20px;
+        transition: all 0.3s ease;
+    }
+    .btn-recargar:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 6px 12px rgba(0,0,0,0.2);
+    }
+    </style>
 </head>
 <body>
     <header>
@@ -21,7 +100,7 @@
         <section class="juego">
             <h3>🎮 Desafío: Verifica contraseñas</h3>
             <div id="contenedor-preguntas"></div>
-            <button onclick="cargarNuevasPreguntas()" style="background-color: #9b59b6; margin-top: 20px; width: 100%;">🔄 Ver otras situaciones</button>
+            <button onclick="cargarNuevasPreguntas()" class="btn-recargar">🔄 Ver otras situaciones</button>
         </section>
         
         <section class="aprende">
@@ -47,16 +126,16 @@
     
     <script>
     const bancoPreguntas = [
-        { id: 1, plataforma: "Situación 1", icono: "🔑", situacion: "Tu contraseña es '123456'", riesgo: "Los hackers pueden crackearla en menos de 1 segundo.", opciones: [{ texto: "Está bien, es fácil de recordar", valor: "bien", correcta: false }, { texto: "Cambiarla por una más fuerte", valor: "cambiar", correcta: true }], explicacion: "'123456' es la contraseña más común y fácil de crackear." },
-        { id: 2, plataforma: "Situación 2", icono: "🔑", situacion: "Usas la misma contraseña para todo", riesgo: "Si hackean una cuenta, tienen acceso a todas.", opciones: [{ texto: "Es práctico, no hay problema", valor: "practico", correcta: false }, { texto: "Usar contraseñas diferentes", valor: "diferentes", correcta: true }], explicacion: "Cada cuenta debe tener su propia contraseña única." },
-        { id: 3, plataforma: "Situación 3", icono: "🔑", situacion: "Tu contraseña es 'Maria2000' (tu nombre y año)", riesgo: "Información personal es fácil de adivinar.", opciones: [{ texto: "Es segura porque tiene números", valor: "segura", correcta: false }, { texto: "Cambiarla por algo sin datos personales", valor: "cambiar", correcta: true }], explicacion: "Nunca uses información personal en contraseñas." },
-        { id: 4, plataforma: "Situación 4", icono: "🔑", situacion: "Tu contraseña es 'P@ssw0rd!2024#'", riesgo: "Tiene 16 caracteres, mayúsculas, minúsculas, números y símbolos.", opciones: [{ texto: "Es muy segura", valor: "segura", correcta: true }, { texto: "Debería ser más corta", valor: "corta", correcta: false }], explicacion: "¡Excelente! Esa es una contraseña fuerte." },
-        { id: 5, plataforma: "Situación 5", icono: "🔑", situacion: "Un amigo te pide tu contraseña para 'ayudarte'", riesgo: "Nunca debes compartir tu contraseña con nadie.", opciones: [{ texto: "Dársela porque es mi amigo", valor: "dar", correcta: false }, { texto: "Negarme amablemente", valor: "negar", correcta: true }], explicacion: "Las contraseñas son personales, nunca las compartas." },
-        { id: 6, plataforma: "Situación 6", icono: "🔑", situacion: "El banco te pide tu contraseña por email", riesgo: "Los bancos NUNCA piden contraseñas por email.", opciones: [{ texto: "Enviársela", valor: "enviar", correcta: false }, { texto: "Reportar como phishing", valor: "reportar", correcta: true }], explicacion: "Es una estafa. Los bancos nunca piden contraseñas por correo." },
-        { id: 7, plataforma: "Situación 7", icono: "🔑", situacion: "Tu contraseña tiene 8 caracteres", riesgo: "8 caracteres es el mínimo, pero 12+ es mucho más seguro.", opciones: [{ texto: "Está bien así", valor: "bien", correcta: false }, { texto: "Agregar más caracteres", valor: "agregar", correcta: true }], explicacion: "Mientras más larga, más difícil de crackear." },
-        { id: 8, plataforma: "Situación 8", icono: "🔑", situacion: "Usas un gestor de contraseñas", riesgo: "Los gestores son seguros y te ayudan a tener contraseñas únicas.", opciones: [{ texto: "Es una buena práctica", valor: "bien", correcta: true }, { texto: "Es peligroso", valor: "peligro", correcta: false }], explicacion: "Los gestores como LastPass o Bitwarden son recomendados." },
-        { id: 9, plataforma: "Situación 9", icono: "🔑", situacion: "Activas la autenticación de dos factores", riesgo: "Añade una capa extra de seguridad.", opciones: [{ texto: "Es innecesario", valor: "innecesario", correcta: false }, { texto: "Es muy recomendable", valor: "recomendable", correcta: true }], explicacion: "El 2FA es una de las mejores protecciones que puedes activar." },
-        { id: 10, plataforma: "Situación 10", icono: "🔑", situacion: "Tu contraseña es 'password'", riesgo: "Es la segunda contraseña más común del mundo.", opciones: [{ texto: "Es clásica, funciona", valor: "clasica", correcta: false }, { texto: "Cambiarla inmediatamente", valor: "cambiar", correcta: true }], explicacion: "'password' es extremadamente insegura. Cámbiala ya." }
+        { id: 1, icono: "🔑", situacion: "Tu contraseña es '123456'", riesgo: "Los hackers pueden crackearla en menos de 1 segundo.", opciones: [{ texto: "Está bien, es fácil de recordar", valor: "bien", correcta: false }, { texto: "Cambiarla por una más fuerte", valor: "cambiar", correcta: true }], explicacion: "'123456' es la contraseña más común y fácil de crackear." },
+        { id: 2, icono: "🔑", situacion: "Usas la misma contraseña para todo", riesgo: "Si hackean una cuenta, tienen acceso a todas.", opciones: [{ texto: "Es práctico, no hay problema", valor: "practico", correcta: false }, { texto: "Usar contraseñas diferentes", valor: "diferentes", correcta: true }], explicacion: "Cada cuenta debe tener su propia contraseña única." },
+        { id: 3, icono: "🔑", situacion: "Tu contraseña es 'Maria2000' (tu nombre y año)", riesgo: "Información personal es fácil de adivinar.", opciones: [{ texto: "Es segura porque tiene números", valor: "segura", correcta: false }, { texto: "Cambiarla por algo sin datos personales", valor: "cambiar", correcta: true }], explicacion: "Nunca uses información personal en contraseñas." },
+        { id: 4, icono: "🔑", situacion: "Tu contraseña es 'P@ssw0rd!2024#'", riesgo: "Tiene 16 caracteres, mayúsculas, minúsculas, números y símbolos.", opciones: [{ texto: "Es muy segura", valor: "segura", correcta: true }, { texto: "Debería ser más corta", valor: "corta", correcta: false }], explicacion: "¡Excelente! Esa es una contraseña fuerte." },
+        { id: 5, icono: "🔑", situacion: "Un amigo te pide tu contraseña para 'ayudarte'", riesgo: "Nunca debes compartir tu contraseña con nadie.", opciones: [{ texto: "Dársela porque es mi amigo", valor: "dar", correcta: false }, { texto: "Negarme amablemente", valor: "negar", correcta: true }], explicacion: "Las contraseñas son personales, nunca las compartas." },
+        { id: 6, icono: "🔑", situacion: "El banco te pide tu contraseña por email", riesgo: "Los bancos NUNCA piden contraseñas por email.", opciones: [{ texto: "Enviársela", valor: "enviar", correcta: false }, { texto: "Reportar como phishing", valor: "reportar", correcta: true }], explicacion: "Es una estafa. Los bancos nunca piden contraseñas por correo." },
+        { id: 7, icono: "🔑", situacion: "Tu contraseña tiene 8 caracteres", riesgo: "8 caracteres es el mínimo, pero 12+ es mucho más seguro.", opciones: [{ texto: "Está bien así", valor: "bien", correcta: false }, { texto: "Agregar más caracteres", valor: "agregar", correcta: true }], explicacion: "Mientras más larga, más difícil de crackear." },
+        { id: 8, icono: "🔑", situacion: "Usas un gestor de contraseñas", riesgo: "Los gestores son seguros y te ayudan a tener contraseñas únicas.", opciones: [{ texto: "Es una buena práctica", valor: "bien", correcta: true }, { texto: "Es peligroso", valor: "peligro", correcta: false }], explicacion: "Los gestores como LastPass o Bitwarden son recomendados." },
+        { id: 9, icono: "🔑", situacion: "Activas la autenticación de dos factores", riesgo: "Añade una capa extra de seguridad.", opciones: [{ texto: "Es innecesario", valor: "innecesario", correcta: false }, { texto: "Es muy recomendable", valor: "recomendable", correcta: true }], explicacion: "El 2FA es una de las mejores protecciones que puedes activar." },
+        { id: 10, icono: "🔑", situacion: "Tu contraseña es 'password'", riesgo: "Es la segunda contraseña más común del mundo.", opciones: [{ texto: "Es clásica, funciona", valor: "clasica", correcta: false }, { texto: "Cambiarla inmediatamente", valor: "cambiar", correcta: true }], explicacion: "'password' es extremadamente insegura. Cámbiala ya." }
     ];
     
     function seleccionarAleatorias(banco, cantidad) {
@@ -75,19 +154,17 @@
         
         seleccionadas.forEach((p, index) => {
             const html = `
-                <div class="correo-ejemplo" style="margin-bottom: 25px;">
-                    <h4>${p.icono} ${p.plataforma}</h4>
-                    <p><strong>Situación:</strong> ${p.situacion}</p>
+                <div class="situacion-card">
+                    <h4>${p.icono} ${p.situacion}</h4>
                     <p><strong>Riesgo:</strong> ${p.riesgo}</p>
-                    <div style="margin-top: 15px;">
-                        ${p.opciones.map(op => `
-                            <button onclick="verificar(${p.id}, '${op.valor}', this)" 
-                                    style="background-color: #3498db; margin: 5px; display: block; width: 100%; margin-bottom: 8px;">
+                    <div class="opciones-container">
+                        ${p.opciones.map((op, i) => `
+                            <button class="opcion-btn btn-${i+1}" onclick="verificar(${p.id}, '${op.valor}', this)">
                                 ${op.texto}
                             </button>
                         `).join('')}
                     </div>
-                    <div id="resultado-${p.id}" style="margin-top: 10px; padding: 10px; display: none; border-radius: 8px;"></div>
+                    <div id="resultado-${p.id}" class="resultado"></div>
                 </div>
             `;
             contenedor.innerHTML += html;
@@ -97,15 +174,19 @@
     function verificar(id, valor, boton) {
         const pregunta = bancoPreguntas.find(p => p.id === id);
         const resultado = document.getElementById(`resultado-${id}`);
-        const opciones = boton.parentElement.querySelectorAll('button');
+        const opciones = boton.parentElement.querySelectorAll('.opcion-btn');
         opciones.forEach(btn => btn.disabled = true);
         
         const opcionCorrecta = pregunta.opciones.find(op => op.valor === valor);
         if (opcionCorrecta && opcionCorrecta.correcta) {
-            resultado.className = 'fuerte';
+            resultado.className = 'resultado';
+            resultado.style.background = 'linear-gradient(135deg, #43e97b 0%, #38f9d7 100%)';
+            resultado.style.color = 'white';
             resultado.innerHTML = `✅ ¡CORRECTO! ${pregunta.explicacion}`;
         } else {
-            resultado.className = 'debil';
+            resultado.className = 'resultado';
+            resultado.style.background = 'linear-gradient(135deg, #fa709a 0%, #fee140 100%)';
+            resultado.style.color = 'white';
             resultado.innerHTML = `❌ Incorrecto. ${pregunta.explicacion}`;
         }
         resultado.style.display = 'block';
