@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Contraseñas Seguras</title>
+    <link rel="stylesheet" href="../../../css/styles.css">
+</head>
+<body>
+    <header>
+        <h1>🛡️ Contraseñas Seguras</h1>
+    </header>
+    
+    <main>
+        <h2>¿Tu contraseña es fuerte?</h2>
+        
+        <input type="text" id="passwordInput" placeholder="Escribe una contraseña" style="padding: 10px; width: 70%;">
+        <button onclick="verificarPassword()" style="padding: 10px 20px; background-color: #3498db; color: white; border: none; border-radius: 5px; cursor: pointer;">Verificar</button>
+        
+        <div id="resultado" style="margin-top: 15px; padding: 10px;"></div>
+        
+        <h3>Consejos:</h3>
+        <ul>
+            <li>✅ Usa al menos 12 caracteres</li>
+            <li>✅ Combina mayúsculas, minúsculas, números y símbolos</li>
+            <li>❌ No uses "123456"</li>
+        </ul>
+        
+        <a href="../../../index.html">← Volver al inicio</a>
+    </main>
+    
+    <script>
+    function verificarPassword() {
+        const password = document.getElementById('passwordInput').value;
+        const resultado = document.getElementById('resultado');
+        
+        let fortaleza = 0;
+        if (password.length >= 12) fortaleza++;
+        if (/[A-Z]/.test(password)) fortaleza++;
+        if (/[a-z]/.test(password)) fortaleza++;
+        if (/[0-9]/.test(password)) fortaleza++;
+        if (/[^A-Za-z0-9]/.test(password)) fortaleza++;
+        
+        if (fortaleza >= 4) {
+            resultado.style.backgroundColor = '#2ecc71';
+            resultado.style.color = 'white';
+            resultado.innerHTML = '✅ ¡Contraseña FUERTE!';
+        } else {
+            resultado.style.backgroundColor = '#e74c3c';
+            resultado.style.color = 'white';
+            resultado.innerHTML = '⚠️ Contraseña DÉBIL';
+        }
+    }
+    </script>
+</body>
+</html>
