@@ -41,14 +41,13 @@
         flex: 1;
         min-width: 150px;
     }
-    .opcion-btn:hover {
+    .opcion-btn:hover:not(:disabled) {
         transform: translateY(-2px);
         box-shadow: 0 4px 8px rgba(0,0,0,0.2);
     }
     .opcion-btn:disabled {
         opacity: 0.6;
         cursor: not-allowed;
-        transform: none;
     }
     .btn-1 { background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); }
     .btn-2 { background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%); }
@@ -83,6 +82,47 @@
         transform: translateY(-2px);
         box-shadow: 0 6px 12px rgba(0,0,0,0.2);
     }
+    .btn-intentar {
+        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        color: white;
+        padding: 10px 20px;
+        border: none;
+        border-radius: 6px;
+        cursor: pointer;
+        font-weight: bold;
+        margin-top: 10px;
+        transition: all 0.3s ease;
+    }
+    .btn-intentar:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+    }
+    .nav-buttons {
+        display: flex;
+        gap: 15px;
+        margin-top: 30px;
+        flex-wrap: wrap;
+    }
+    .nav-btn {
+        flex: 1;
+        min-width: 200px;
+        padding: 12px 25px;
+        background: linear-gradient(135deg, #3498db 0%, #2980b9 100%);
+        color: white;
+        text-decoration: none;
+        border-radius: 8px;
+        text-align: center;
+        font-weight: bold;
+        transition: all 0.3s ease;
+        display: inline-block;
+    }
+    .nav-btn:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 6px 12px rgba(0,0,0,0.2);
+    }
+    .nav-btn.secundario {
+        background: linear-gradient(135deg, #95a5a6 0%, #7f8c8d 100%);
+    }
     </style>
 </head>
 <body>
@@ -114,10 +154,10 @@
             </ul>
         </section>
         
-        <nav class="navegacion">
-            <a href="../../../index.html">← Volver al inicio</a>
-            <a href="../phishing/">Siguiente módulo: Phishing →</a>
-        </nav>
+        <div class="nav-buttons">
+            <a href="../../../index.html" class="nav-btn secundario">← Volver al inicio</a>
+            <a href="../phishing/" class="nav-btn">Siguiente módulo: Phishing →</a>
+        </div>
     </main>
     
     <footer>
@@ -126,20 +166,26 @@
     
     <script>
     const bancoPreguntas = [
-        { id: 1, icono: "🔑", situacion: "Tu contraseña es '123456'", riesgo: "Los hackers pueden crackearla en menos de 1 segundo.", opciones: [{ texto: "Está bien, es fácil de recordar", valor: "bien", correcta: false }, { texto: "Cambiarla por una más fuerte", valor: "cambiar", correcta: true }], explicacion: "'123456' es la contraseña más común y fácil de crackear." },
-        { id: 2, icono: "🔑", situacion: "Usas la misma contraseña para todo", riesgo: "Si hackean una cuenta, tienen acceso a todas.", opciones: [{ texto: "Es práctico, no hay problema", valor: "practico", correcta: false }, { texto: "Usar contraseñas diferentes", valor: "diferentes", correcta: true }], explicacion: "Cada cuenta debe tener su propia contraseña única." },
-        { id: 3, icono: "🔑", situacion: "Tu contraseña es 'Maria2000' (tu nombre y año)", riesgo: "Información personal es fácil de adivinar.", opciones: [{ texto: "Es segura porque tiene números", valor: "segura", correcta: false }, { texto: "Cambiarla por algo sin datos personales", valor: "cambiar", correcta: true }], explicacion: "Nunca uses información personal en contraseñas." },
-        { id: 4, icono: "🔑", situacion: "Tu contraseña es 'P@ssw0rd!2024#'", riesgo: "Tiene 16 caracteres, mayúsculas, minúsculas, números y símbolos.", opciones: [{ texto: "Es muy segura", valor: "segura", correcta: true }, { texto: "Debería ser más corta", valor: "corta", correcta: false }], explicacion: "¡Excelente! Esa es una contraseña fuerte." },
-        { id: 5, icono: "🔑", situacion: "Un amigo te pide tu contraseña para 'ayudarte'", riesgo: "Nunca debes compartir tu contraseña con nadie.", opciones: [{ texto: "Dársela porque es mi amigo", valor: "dar", correcta: false }, { texto: "Negarme amablemente", valor: "negar", correcta: true }], explicacion: "Las contraseñas son personales, nunca las compartas." },
-        { id: 6, icono: "🔑", situacion: "El banco te pide tu contraseña por email", riesgo: "Los bancos NUNCA piden contraseñas por email.", opciones: [{ texto: "Enviársela", valor: "enviar", correcta: false }, { texto: "Reportar como phishing", valor: "reportar", correcta: true }], explicacion: "Es una estafa. Los bancos nunca piden contraseñas por correo." },
-        { id: 7, icono: "🔑", situacion: "Tu contraseña tiene 8 caracteres", riesgo: "8 caracteres es el mínimo, pero 12+ es mucho más seguro.", opciones: [{ texto: "Está bien así", valor: "bien", correcta: false }, { texto: "Agregar más caracteres", valor: "agregar", correcta: true }], explicacion: "Mientras más larga, más difícil de crackear." },
-        { id: 8, icono: "🔑", situacion: "Usas un gestor de contraseñas", riesgo: "Los gestores son seguros y te ayudan a tener contraseñas únicas.", opciones: [{ texto: "Es una buena práctica", valor: "bien", correcta: true }, { texto: "Es peligroso", valor: "peligro", correcta: false }], explicacion: "Los gestores como LastPass o Bitwarden son recomendados." },
-        { id: 9, icono: "🔑", situacion: "Activas la autenticación de dos factores", riesgo: "Añade una capa extra de seguridad.", opciones: [{ texto: "Es innecesario", valor: "innecesario", correcta: false }, { texto: "Es muy recomendable", valor: "recomendable", correcta: true }], explicacion: "El 2FA es una de las mejores protecciones que puedes activar." },
-        { id: 10, icono: "🔑", situacion: "Tu contraseña es 'password'", riesgo: "Es la segunda contraseña más común del mundo.", opciones: [{ texto: "Es clásica, funciona", valor: "clasica", correcta: false }, { texto: "Cambiarla inmediatamente", valor: "cambiar", correcta: true }], explicacion: "'password' es extremadamente insegura. Cámbiala ya." }
+        { id: 1, icono: "🔑", situacion: "Tu contraseña es '123456'", opciones: [{ texto: "Está bien, es fácil de recordar", valor: "bien", correcta: false }, { texto: "Cambiarla por una más fuerte", valor: "cambiar", correcta: true }], tip: "'123456' es la contraseña más común y fácil de crackear en menos de 1 segundo." },
+        { id: 2, icono: "🔑", situacion: "Usas la misma contraseña para todo", opciones: [{ texto: "Es práctico, no hay problema", valor: "practico", correcta: false }, { texto: "Usar contraseñas diferentes", valor: "diferentes", correcta: true }], tip: "Cada cuenta debe tener su propia contraseña única. Si hackean una, tendrán acceso a todas." },
+        { id: 3, icono: "🔑", situacion: "Tu contraseña es 'Maria2000' (tu nombre y año)", opciones: [{ texto: "Es segura porque tiene números", valor: "segura", correcta: false }, { texto: "Cambiarla por algo sin datos personales", valor: "cambiar", correcta: true }], tip: "Nunca uses información personal en contraseñas. Es muy fácil de adivinar." },
+        { id: 4, icono: "🔑", situacion: "Tu contraseña es 'P@ssw0rd!2024#'", opciones: [{ texto: "Es muy segura", valor: "segura", correcta: true }, { texto: "Debería ser más corta", valor: "corta", correcta: false }], tip: "¡Excelente! Tiene 16 caracteres, mayúsculas, minúsculas, números y símbolos." },
+        { id: 5, icono: "🔑", situacion: "Un amigo te pide tu contraseña para 'ayudarte'", opciones: [{ texto: "Dársela porque es mi amigo", valor: "dar", correcta: false }, { texto: "Negarme amablemente", valor: "negar", correcta: true }], tip: "Las contraseñas son personales, NUNCA las compartas con nadie." },
+        { id: 6, icono: "🔑", situacion: "El banco te pide tu contraseña por email", opciones: [{ texto: "Enviársela", valor: "enviar", correcta: false }, { texto: "Reportar como phishing", valor: "reportar", correcta: true }], tip: "Es una estafa. Los bancos NUNCA piden contraseñas por correo electrónico." },
+        { id: 7, icono: "🔑", situacion: "Tu contraseña tiene 8 caracteres", opciones: [{ texto: "Está bien así", valor: "bien", correcta: false }, { texto: "Agregar más caracteres", valor: "agregar", correcta: true }], tip: "8 caracteres es el mínimo, pero 12+ es mucho más seguro." },
+        { id: 8, icono: "🔑", situacion: "Usas un gestor de contraseñas", opciones: [{ texto: "Es una buena práctica", valor: "bien", correcta: true }, { texto: "Es peligroso", valor: "peligro", correcta: false }], tip: "Los gestores como LastPass o Bitwarden son recomendados y seguros." },
+        { id: 9, icono: "🔑", situacion: "Activas la autenticación de dos factores", opciones: [{ texto: "Es innecesario", valor: "innecesario", correcta: false }, { texto: "Es muy recomendable", valor: "recomendable", correcta: true }], tip: "El 2FA es una de las mejores protecciones que puedes activar." },
+        { id: 10, icono: "🔑", situacion: "Tu contraseña es 'password'", opciones: [{ texto: "Es clásica, funciona", valor: "clasica", correcta: false }, { texto: "Cambiarla inmediatamente", valor: "cambiar", correcta: true }], tip: "'password' es la segunda contraseña más común del mundo. Cámbiala ya." }
     ];
     
+    let preguntasUsadas = [];
+    
     function seleccionarAleatorias(banco, cantidad) {
-        const mezclado = [...banco];
+        const disponibles = banco.filter(p => !preguntasUsadas.includes(p.id));
+        if (disponibles.length < cantidad) {
+            preguntasUsadas = [];
+        }
+        const mezclado = [...banco].filter(p => !preguntasUsadas.includes(p.id));
         for (let i = mezclado.length - 1; i > 0; i--) {
             const j = Math.floor(Math.random() * (i + 1));
             [mezclado[i], mezclado[j]] = [mezclado[j], mezclado[i]];
@@ -152,12 +198,12 @@
         contenedor.innerHTML = '';
         const seleccionadas = seleccionarAleatorias(bancoPreguntas, 4);
         
-        seleccionadas.forEach((p, index) => {
+        seleccionadas.forEach((p) => {
+            preguntasUsadas.push(p.id);
             const html = `
-                <div class="situacion-card">
+                <div class="situacion-card" id="card-${p.id}">
                     <h4>${p.icono} ${p.situacion}</h4>
-                    <p><strong>Riesgo:</strong> ${p.riesgo}</p>
-                    <div class="opciones-container">
+                    <div class="opciones-container" id="opciones-${p.id}">
                         ${p.opciones.map((op, i) => `
                             <button class="opcion-btn btn-${i+1}" onclick="verificar(${p.id}, '${op.valor}', this)">
                                 ${op.texto}
@@ -174,7 +220,9 @@
     function verificar(id, valor, boton) {
         const pregunta = bancoPreguntas.find(p => p.id === id);
         const resultado = document.getElementById(`resultado-${id}`);
-        const opciones = boton.parentElement.querySelectorAll('.opcion-btn');
+        const opcionesDiv = document.getElementById(`opciones-${id}`);
+        const opciones = opcionesDiv.querySelectorAll('.opcion-btn');
+        
         opciones.forEach(btn => btn.disabled = true);
         
         const opcionCorrecta = pregunta.opciones.find(op => op.valor === valor);
@@ -182,14 +230,44 @@
             resultado.className = 'resultado';
             resultado.style.background = 'linear-gradient(135deg, #43e97b 0%, #38f9d7 100%)';
             resultado.style.color = 'white';
-            resultado.innerHTML = `✅ ¡CORRECTO! ${pregunta.explicacion}`;
+            resultado.innerHTML = `✅ ¡CORRECTO!<br><br>💡 <strong>TIP:</strong> ${pregunta.tip}`;
         } else {
             resultado.className = 'resultado';
             resultado.style.background = 'linear-gradient(135deg, #fa709a 0%, #fee140 100%)';
             resultado.style.color = 'white';
-            resultado.innerHTML = `❌ Incorrecto. ${pregunta.explicacion}`;
+            resultado.innerHTML = `❌ Incorrecto.<br><br>💡 <strong>TIP:</strong> ${pregunta.tip}<br><button class="btn-intentar" onclick="intentarDeNuevo(${id})">🔄 Volver a intentar</button>`;
         }
         resultado.style.display = 'block';
+    }
+    
+    function intentarDeNuevo(id) {
+        const card = document.getElementById(`card-${id}`);
+        const preguntaOriginal = bancoPreguntas.find(p => p.id === id);
+        
+        const disponibles = bancoPreguntas.filter(p => p.id !== id && !preguntasUsadas.includes(p.id));
+        if (disponibles.length === 0) {
+            preguntasUsadas = [];
+        }
+        
+        const nuevaPregunta = disponibles.length > 0 
+            ? disponibles[Math.floor(Math.random() * disponibles.length)]
+            : bancoPreguntas[Math.floor(Math.random() * bancoPreguntas.length)];
+        
+        preguntasUsadas.push(nuevaPregunta.id);
+        
+        card.innerHTML = `
+            <h4>${nuevaPregunta.icono} ${nuevaPregunta.situacion}</h4>
+            <div class="opciones-container" id="opciones-${nuevaPregunta.id}">
+                ${nuevaPregunta.opciones.map((op, i) => `
+                    <button class="opcion-btn btn-${i+1}" onclick="verificar(${nuevaPregunta.id}, '${op.valor}', this)">
+                        ${op.texto}
+                    </button>
+                `).join('')}
+            </div>
+            <div id="resultado-${nuevaPregunta.id}" class="resultado"></div>
+        `;
+        
+        card.id = `card-${nuevaPregunta.id}`;
     }
     
     window.onload = cargarNuevasPreguntas;
