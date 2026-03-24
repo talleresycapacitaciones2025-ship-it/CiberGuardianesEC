@@ -9,81 +9,94 @@
 <body>
     <header>
         <h1>🎣 Módulo 2: Detecta el Phishing</h1>
+        <p>Aprende a identificar correos y mensajes sospechosos</p>
     </header>
     
     <main>
         <section class="intro">
             <h2>¿Es este mensaje real o falso?</h2>
-            <p>Aprende a identificar estafas comunes en Ecuador.</p>
+            <p>El phishing es una de las estafas más comunes en Ecuador. ¡Aprende a protegerte!</p>
         </section>
         
         <section class="juego">
-            <h3>Desafío: Clasifica los mensajes</h3>
+            <h3>🎮 Desafío: Clasifica los mensajes</h3>
             
-            <div class="correo-ejemplo" style="border: 2px solid #e74c3c; padding: 15px; margin: 15px 0; border-radius: 10px; background-color: #fdf2f2;">
-                <h4>📧 Mensaje 1:</h4>
+            <div class="correo-ejemplo">
+                <h4>📧 Mensaje 1: Correo de "Banco"</h4>
                 <p><strong>De:</strong> "Banco Pichincha" &lt;seguridad@bancopichincha-verificacion.com&gt;</p>
                 <p><strong>Asunto:</strong> URGENTE: Tu cuenta será bloqueada</p>
                 <p><strong>Mensaje:</strong> "Estimado cliente, haga click aquí para verificar su cuenta o será bloqueada en 24 horas."</p>
                 
                 <div style="margin-top: 15px;">
-                    <button onclick="clasificarPhishing(1, 'phishing')" style="background-color: #e74c3c; margin-right: 10px;">🚫 Es Phishing</button>
+                    <button onclick="clasificarPhishing(1, 'phishing')" style="background-color: #e74c3c;">🚫 Es Phishing</button>
                     <button onclick="clasificarPhishing(1, 'real')" style="background-color: #2ecc71;">✅ Es Real</button>
                 </div>
                 
-                <div id="resultado-1" style="margin-top: 10px; padding: 10px; display: none;"></div>
+                <div id="resultado-1"></div>
             </div>
             
-            <div class="correo-ejemplo" style="border: 2px solid #2ecc71; padding: 15px; margin: 15px 0; border-radius: 10px; background-color: #f2fdf4;">
-                <h4>📧 Mensaje 2:</h4>
+            <div class="correo-ejemplo">
+                <h4>📧 Mensaje 2: Estado de Cuenta</h4>
                 <p><strong>De:</strong> "Banco Pichincha" &lt;notificaciones@bancopichincha.com&gt;</p>
                 <p><strong>Asunto:</strong> Tu estado de cuenta está disponible</p>
                 <p><strong>Mensaje:</strong> "Ingresa a tu banca en línea para revisar tu estado de cuenta mensual."</p>
                 
                 <div style="margin-top: 15px;">
-                    <button onclick="clasificarPhishing(2, 'phishing')" style="background-color: #e74c3c; margin-right: 10px;">🚫 Es Phishing</button>
+                    <button onclick="clasificarPhishing(2, 'phishing')" style="background-color: #e74c3c;">🚫 Es Phishing</button>
                     <button onclick="clasificarPhishing(2, 'real')" style="background-color: #2ecc71;">✅ Es Real</button>
                 </div>
                 
-                <div id="resultado-2" style="margin-top: 10px; padding: 10px; display: none;"></div>
+                <div id="resultado-2"></div>
             </div>
             
-            <div class="correo-ejemplo" style="border: 2px solid #e74c3c; padding: 15px; margin: 15px 0; border-radius: 10px; background-color: #fdf2f2;">
-                <h4>📱 Mensaje 3 (WhatsApp):</h4>
+            <div class="correo-ejemplo">
+                <h4>📱 Mensaje 3: WhatsApp</h4>
                 <p><strong>De:</strong> Número desconocido (+593 99 123 4567)</p>
                 <p><strong>Mensaje:</strong> "Hola, soy del banco. Necesito que me confirmes tu clave de internet por seguridad."</p>
                 
                 <div style="margin-top: 15px;">
-                    <button onclick="clasificarPhishing(3, 'phishing')" style="background-color: #e74c3c; margin-right: 10px;">🚫 Es Phishing</button>
+                    <button onclick="clasificarPhishing(3, 'phishing')" style="background-color: #e74c3c;">🚫 Es Phishing</button>
                     <button onclick="clasificarPhishing(3, 'real')" style="background-color: #2ecc71;">✅ Es Real</button>
                 </div>
                 
-                <div id="resultado-3" style="margin-top: 10px; padding: 10px; display: none;"></div>
+                <div id="resultado-3"></div>
             </div>
         </section>
         
         <section class="aprende">
             <h3>🔍 Señales de Alerta de Phishing:</h3>
             <ul>
-                <li>🚫 Urgencia excesiva ("actúa ahora o tu cuenta será bloqueada")</li>
-                <li>🚫 Remitente sospechoso (dominio diferente al oficial)</li>
-                <li>🚫 Piden contraseñas o datos sensibles</li>
-                <li>🚫 Enlaces acortados o extraños</li>
-                <li>🚫 Errores ortográficos o de gramática</li>
-                <li>✅ Los bancos NUNCA piden contraseñas por mensaje</li>
+                <li>Urgencia excesiva ("actúa ahora o tu cuenta será bloqueada")</li>
+                <li>Remitente sospechoso (dominio diferente al oficial)</li>
+                <li>Piden contraseñas o datos sensibles</li>
+                <li>Enlaces acortados o extraños</li>
+                <li>Errores ortográficos o de gramática</li>
+                <li>Los bancos NUNCA piden contraseñas por mensaje</li>
+            </ul>
+        </section>
+        
+        <section class="estadisticas">
+            <h3>📊 Phishing en Ecuador:</h3>
+            <ul>
+                <li>El 60% de ecuatorianos ha recibido al menos un intento de phishing</li>
+                <li>El 25% ha hecho click en enlaces sospechosos</li>
+                <li>Las pérdidas por phishing superan los $50 millones anuales en Ecuador</li>
             </ul>
         </section>
         
         <nav class="navegacion">
             <a href="../../../index.html">← Volver al inicio</a>
-            <a href="../contrasenas/">← Módulo anterior</a>
+            <a href="../contrasenas/">← Módulo anterior: Contraseñas</a>
         </nav>
     </main>
+    
+    <footer>
+        <p>Hecho con 💙 para Ecuador | CiberGuardianesEC</p>
+    </footer>
     
     <script>
     function clasificarPhishing(num, respuesta) {
         const resultado = document.getElementById('resultado-' + num);
-        resultado.style.display = 'block';
         
         const correctas = {
             1: 'phishing',
@@ -92,12 +105,10 @@
         };
         
         if (respuesta === correctas[num]) {
-            resultado.style.backgroundColor = '#2ecc71';
-            resultado.style.color = 'white';
+            resultado.className = 'fuerte';
             resultado.innerHTML = '✅ ¡CORRECTO! Bien identificado.';
         } else {
-            resultado.style.backgroundColor = '#e74c3c';
-            resultado.style.color = 'white';
+            resultado.className = 'debil';
             resultado.innerHTML = '❌ Incorrecto. Revisa las señales de alerta.';
         }
     }
