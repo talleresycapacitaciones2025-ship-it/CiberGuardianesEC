@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Módulo 4: Compras Online Seguras</title>
+    <link rel="stylesheet" href="../../../css/styles.css">
+</head>
+<body>
+    <header>
+        <h1>🛒 Módulo 4: Compras Online Seguras</h1>
+    </header>
+    
+    <main>
+        <section class="intro">
+            <h2>¿Es segura esta tienda?</h2>
+            <p>Aprende a identificar tiendas confiables y evitar estafas.</p>
+        </section>
+        
+        <section class="juego">
+            <h3>Desafío: Tienda Segura o Estafa</h3>
+            
+            <div class="tienda-ejemplo" style="border: 2px solid #e74c3c; padding: 15px; margin: 15px 0; border-radius: 10px; background-color: #fdf2f2;">
+                <h4>🛍️ Tienda 1: "Ofertas Ecuador"</h4>
+                <p><strong>URL:</strong> www.ofertas-ecuador-descuentos.com</p>
+                <p><strong>Precio:</strong> iPhone 15 Pro - $299 (Precio normal: $1,200)</p>
+                <p><strong>Pago:</strong> Solo transferencia bancaria anticipada</p>
+                <p><strong>Datos:</strong> No tiene dirección física ni teléfono de contacto</p>
+                
+                <div style="margin-top: 15px;">
+                    <button onclick="evaluarTienda(1, 'segura')" style="background-color: #2ecc71; margin: 5px;">✅ Es Segura</button>
+                    <button onclick="evaluarTienda(1, 'estafa')" style="background-color: #e74c3c; margin: 5px;">🚫 Es Estafa</button>
+                </div>
+                
+                <div id="resultado-1" style="margin-top: 10px; padding: 10px; display: none;"></div>
+            </div>
+            
+            <div class="tienda-ejemplo" style="border: 2px solid #2ecc71; padding: 15px; margin: 15px 0; border-radius: 10px; background-color: #f2fdf4;">
+                <h4>🛍️ Tienda 2: "Falabella.com.ec"</h4>
+                <p><strong>URL:</strong> www.falabella.com.ec</p>
+                <p><strong>Seguridad:</strong> Tiene candado 🔒 y https://</p>
+                <p><strong>Pago:</strong> Tarjeta de crédito, débito, contraentrega</p>
+                <p><strong>Contacto:</strong> Teléfono, dirección, RUC visible</p>
+                
+                <div style="margin-top: 15px;">
+                    <button onclick="evaluarTienda(2, 'segura')" style="background-color: #2ecc71; margin: 5px;">✅ Es Segura</button>
+                    <button onclick="evaluarTienda(2, 'estafa')" style="background-color: #e74c3c; margin: 5px;">🚫 Es Estafa</button>
+                </div>
+                
+                <div id="resultado-2" style="margin-top: 10px; padding: 10px; display: none;"></div>
+            </div>
+            
+            <div class="tienda-ejemplo" style="border: 2px solid #e74c3c; padding: 15px; margin: 15px 0; border-radius: 10px; background-color: #fdf2f2;">
+                <h4>🛍️ Marketplace Facebook: "Vendedor XYZ"</h4>
+                <p><strong>Producto:</strong> Laptop gamer - $350 (Precio normal: $800)</p>
+                <p><strong>Vendedor:</strong> Cuenta creada hace 2 días, sin reseñas</p>
+                <p><strong>Entrega:</strong> "Deposita y coordinamos"</p>
+                <p><strong>Ubicación:</strong> Dice estar en Quito pero escribe desde otra ciudad</p>
+                
+                <div style="margin-top: 15px;">
+                    <button onclick="evaluarTienda(3, 'segura')" style="background-color: #2ecc71; margin: 5px;">✅ Es Seguro</button>
+                    <button onclick="evaluarTienda(3, 'estafa')" style="background-color: #e74c3c; margin: 5px;">🚫 Es Estafa</button>
+                </div>
+                
+                <div id="resultado-3" style="margin-top: 10px; padding: 10px; display: none;"></div>
+            </div>
+        </section>
+        
+        <section class="aprende">
+            <h3>🔍 Señales de Tienda Segura:</h3>
+            <ul>
+                <li>✅ URL comienza con <strong>https://</strong> y tiene candado 🔒</li>
+                <li>✅ Precios realistas (no "demasiado buenos para ser verdad")</li>
+                <li>✅ Información de contacto visible (teléfono, dirección, RUC)</li>
+                <li>✅ Múltiples formas de pago (incluyendo contraentrega)</li>
+                <li>✅ Reseñas y calificaciones de otros clientes</li>
+                <li>✅ Políticas de devolución claras</li>
+                <li>❌ Desconfía de precios 70% más bajos que el mercado</li>
+                <li>❌ Nunca pagues por transferencia a desconocidos</li>
+            </ul>
+        </section>
+        
+        <section class="estadisticas" style="background-color: #f8f9fa; padding: 15px; border-radius: 10px; margin: 20px 0;">
+            <h3>📊 Estafas Comunes en Ecuador:</h3>
+            <ul>
+                <li>🚫 Marketplace Facebook: 45% de las estafas online</li>
+                <li>🚫 Tiendas falsas de electrónicos: 30%</li>
+                <li>🚫 Phishing de bancos: 15%</li>
+                <li>✅ Solo el 25% de ecuatorianos verifica la seguridad antes de comprar</li>
+            </ul>
+        </section>
+        
+        <section class="consejos-rapidos" style="background-color: #fff3cd; padding: 15px; border-radius: 10px; margin: 20px 0; border-left: 5px solid #ffc107;">
+            <h3>💡 Consejo de Oro:</h3>
+            <p><strong>"Si es demasiado bueno para ser verdad, probablemente sea una estafa."</strong></p>
+            <p>Siempre compara precios en al menos 3 tiendas antes de comprar.</p>
+        </section>
+        
+        <nav class="navegacion">
+            <a href="../../../index.html">← Volver al inicio</a>
+            <a href="../redes-sociales/">← Módulo anterior: Redes Sociales</a>
+        </nav>
+    </main>
+    
+    <script>
+    function evaluarTienda(num, evaluacion) {
+        const resultado = document.getElementById('resultado-' + num);
+        resultado.style.display = 'block';
+        
+        const correctas = {
+            1: 'estafa',
+            2: 'segura',
+            3: 'estafa'
+        };
+        
+        if (evaluacion === correctas[num]) {
+            resultado.style.backgroundColor = '#2ecc71';
+            resultado.style.color = 'white';
+            resultado.innerHTML = '✅ ¡CORRECTO! Bien identificado.';
+        } else {
+            resultado.style.backgroundColor = '#e74c3c';
+            resultado.style.color = 'white';
+            if (num === 1) {
+                resultado.innerHTML = '❌ Es estafa: Precio irreal, sin contacto, solo transferencia.';
+            } else if (num === 3) {
+                resultado.innerHTML = '❌ Es estafa: Vendedor nuevo, precio bajo, pide depósito.';
+            }
+        }
+    }
+    </script>
+</body>
+</html>
