@@ -124,6 +124,8 @@
         transition: all 0.3s ease;
         box-shadow: 0 4px 6px rgba(0,0,0,0.1);
         font-size: 0.95em;
+        border: none;
+        cursor: pointer;
     }
     
     .btn-modulo:hover {
@@ -232,6 +234,18 @@
             <p>Aprende a protegerte en internet de forma divertida y segura.</p>
         </div>
         
+        <!-- Sección de Progreso Guardado (se muestra si hay progreso) -->
+        <div id="seccion-progreso-guardado" style="display: none; margin-bottom: 25px;">
+            <div class="opcion-modo" style="border-color: #f39c12; background: linear-gradient(135deg, #fff3cd 0%, #ffeaa7 100%);">
+                <h4>🔄 Continuar tu partida guardada</h4>
+                <p id="texto-progreso">Tienes progreso sin completar</p>
+                <div>
+                    <button onclick="continuarPartida()" class="btn-modulo" style="background: linear-gradient(135deg, #f39c12 0%, #e67e22 100%);">▶️ Continuar donde lo dejaste</button>
+                    <button onclick="borrarProgreso()" class="btn-modulo" style="background: linear-gradient(135deg, #95a5a6 0%, #7f8c8d 100%);">🗑️ Empezar de nuevo</button>
+                </div>
+            </div>
+        </div>
+        
         <div class="modo-seleccion">
             <h3>📱 Elige tu modo:</h3>
             
@@ -263,5 +277,49 @@
     <div class="footer-principal">
         <p>Hecho con 💙 para Ecuador | CiberGuardianesEC</p>
     </div>
+    
+    <script>
+    // Verificar si hay progreso guardado al cargar la página
+    window.onload = function() {
+        const progresoGuardado = localStorage.getItem('ciberGuardianes_progreso');
+        if (progresoGuardado) {
+            const datos = JSON.parse(progresoGuardado);
+            document.getElementById('seccion-progreso-guardado').style.display = 'block';
+            
+            const nombresModulos = {
+                'modulo1_contraseñas': 'Contraseñas',
+                'modulo2_phishing': 'Phishing',
+                'modulo3_redes': 'Redes Sociales',
+                'modulo4_compras': 'Compras Online'
+            };
+            
+            const nombreModulo = nombresModulos[datos.modulo] || datos.modulo;
+            document.getElementById('texto-progreso').textContent = 
+                `Módulo: ${nombreModulo} - ${datos.respondidas || 0}/4 preguntas completadas`;
+        }
+    };
+    
+    function continuarPartida() {
+        const progresoGuardado = localStorage.getItem('ciberGuardianes_progreso');
+        if (progresoGuardado) {
+            const datos = JSON.parse(progresoGuardado);
+            const rutasModulos = {
+                'modulo1_contraseñas': 'app/modulos/contrasenas/',
+                'modulo2_phishing': 'app/modulos/phishing/',
+                'modulo3_redes': 'app/modulos/redes-sociales/',
+                'modulo4_compras': 'app/modulos/compras-online/'
+            };
+            window.location.href = rutasModulos[datos.modulo] || 'index.html';
+        }
+    }
+    
+    function borrarProgreso() {
+        if (confirm('¿Estás seguro de que quieres borrar tu progreso guardado?')) {
+            localStorage.removeItem('ciberGuardianes_progreso');
+            document.getElementById('seccion-progreso-guardado').style.display = 'none';
+            alert('✅ Progreso borrado. Puedes empezar de nuevo.');
+        }
+    }
+    </script>
 </body>
 </html>
