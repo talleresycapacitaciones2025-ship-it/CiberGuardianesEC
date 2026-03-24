@@ -2,34 +2,62 @@
 <html lang="es">
 <head>
     <meta charset="UTF-8">
-    <title>Contraseñas Seguras</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Módulo 1: Contraseñas Seguras</title>
     <link rel="stylesheet" href="../../../css/styles.css">
 </head>
 <body>
     <header>
-        <h1>🛡️ Contraseñas Seguras</h1>
+        <h1>🔐 Módulo 1: Contraseñas Seguras</h1>
+        <p>Aprende a crear contraseñas que los hackers no puedan adivinar</p>
     </header>
     
     <main>
-        <h2>¿Tu contraseña es fuerte?</h2>
+        <section class="intro">
+            <h2>¿Tu contraseña es fuerte?</h2>
+            <p>Una contraseña segura es tu primera línea de defensa contra los ciberdelincuentes.</p>
+        </section>
         
-        <input type="text" id="passwordInput" placeholder="Escribe una contraseña" style="padding: 10px; width: 70%;">
-        <button onclick="verificarPassword()" style="padding: 10px 20px; background-color: #3498db; color: white; border: none; border-radius: 5px; cursor: pointer;">Verificar</button>
+        <section class="juego">
+            <h3>🎮 Desafío: Crea tu contraseña</h3>
+            <p>Escribe una contraseña y verifica qué tan segura es:</p>
+            
+            <input type="text" id="passwordInput" placeholder="Escribe una contraseña">
+            <button onclick="verificarPassword()">Verificar Fortaleza</button>
+            
+            <div id="resultado"></div>
+        </section>
         
-        <div id="resultado" style="margin-top: 15px; padding: 10px;"></div>
+        <section class="aprende">
+            <h3>✅ Consejos para Contraseñas Seguras:</h3>
+            <ul>
+                <li>Usa al menos 12 caracteres</li>
+                <li>Combina mayúsculas, minúsculas, números y símbolos</li>
+                <li>No uses información personal (nombres, fechas de nacimiento)</li>
+                <li>No uses contraseñas comunes como "123456" o "password"</li>
+                <li>Usa un gestor de contraseñas para recordarlas</li>
+                <li>Activa la autenticación de dos factores siempre que puedas</li>
+            </ul>
+        </section>
         
-        <h3>Consejos:</h3>
-        <ul>
-            <li>✅ Usa al menos 12 caracteres</li>
-            <li>✅ Combina mayúsculas, minúsculas, números y símbolos</li>
-            <li>❌ No uses "123456"</li>
-        </ul>
+        <section class="estadisticas">
+            <h3>📊 ¿Sabías qué?</h3>
+            <ul>
+                <li>El 80% de las brechas de seguridad son por contraseñas débiles</li>
+                <li>Un hacker puede crackear "123456" en menos de 1 segundo</li>
+                <li>Una contraseña de 12 caracteres con símbolos tarda 34,000 años en crackearse</li>
+            </ul>
+        </section>
         
-       <nav class="navegacion">
-    <a href="../../../index.html">← Volver al inicio</a>
-    <a href="../phishing/">Siguiente módulo: Phishing →</a>
-</nav>
+        <nav class="navegacion">
+            <a href="../../../index.html">← Volver al inicio</a>
+            <a href="../phishing/">Siguiente módulo: Phishing →</a>
+        </nav>
     </main>
+    
+    <footer>
+        <p>Hecho con 💙 para Ecuador | CiberGuardianesEC</p>
+    </footer>
     
     <script>
     function verificarPassword() {
@@ -37,6 +65,7 @@
         const resultado = document.getElementById('resultado');
         
         let fortaleza = 0;
+        
         if (password.length >= 12) fortaleza++;
         if (/[A-Z]/.test(password)) fortaleza++;
         if (/[a-z]/.test(password)) fortaleza++;
@@ -44,13 +73,14 @@
         if (/[^A-Za-z0-9]/.test(password)) fortaleza++;
         
         if (fortaleza >= 4) {
-            resultado.style.backgroundColor = '#2ecc71';
-            resultado.style.color = 'white';
-            resultado.innerHTML = '✅ ¡Contraseña FUERTE!';
+            resultado.className = 'fuerte';
+            resultado.innerHTML = '✅ ¡Contraseña FUERTE! Los hackers lo tendrán muy difícil.';
+        } else if (fortaleza >= 2) {
+            resultado.className = 'advertencia';
+            resultado.innerHTML = '⚠️ Contraseña REGULAR. Puedes mejorarla agregando más caracteres y variedad.';
         } else {
-            resultado.style.backgroundColor = '#e74c3c';
-            resultado.style.color = 'white';
-            resultado.innerHTML = '⚠️ Contraseña DÉBIL';
+            resultado.className = 'debil';
+            resultado.innerHTML = '❌ Contraseña DÉBIL. Los hackers la crackearán en segundos.';
         }
     }
     </script>
