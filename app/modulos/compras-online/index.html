@@ -20,12 +20,7 @@
         
         <section class="juego">
             <h3>🎮 Desafío: Tienda Segura o Estafa</h3>
-            <p style="background-color: #fff3cd; padding: 15px; border-radius: 8px; border-left: 4px solid #ffa502; margin-bottom: 20px;">
-                💡 <strong>Nota:</strong> Cada vez que entres, verás 4 situaciones aleatorias de un banco de 10.
-            </p>
-            
             <div id="contenedor-preguntas"></div>
-            
             <button onclick="cargarNuevasPreguntas()" style="background-color: #9b59b6; margin-top: 20px; width: 100%;">🔄 Ver otras situaciones</button>
         </section>
         
@@ -49,138 +44,70 @@
         <p>Hecho con 💙 para Ecuador | CiberGuardianesEC</p>
     </footer>
     
-    <script src="../../../js/preguntas-aleatorias.js"></script>
     <script>
     const bancoPreguntas = [
-        {
-            id: 1,
-            plataforma: "Tienda 1",
-            icono: "🛍️",
-            situacion: "iPhone 15 Pro a $299 (precio normal: $1,200)",
-            riesgo: "Precio demasiado bueno para ser verdad.",
-            opciones: [
-                { texto: "Comprar inmediatamente", valor: "comprar", correcta: false },
-                { texto: "Es estafa, no comprar", valor: "estafa", correcta: true }
-            ],
-            explicacion: "Si es demasiado bueno para ser verdad, probablemente sea estafa."
-        },
-        {
-            id: 2,
-            plataforma: "Tienda 2",
-            icono: "🛍️",
-            situacion: "Tienda con https:// y candado 🔒",
-            riesgo: "El candado indica conexión segura.",
-            opciones: [
-                { texto: "Es más segura", valor: "segura", correcta: true },
-                { texto: "No importa", valor: "importa", correcta: false }
-            ],
-            explicacion: "https:// cifra tus datos durante la compra."
-        },
-        {
-            id: 3,
-            plataforma: "Marketplace",
-            icono: "📱",
-            situacion: "Vendedor nuevo sin reseñas pide depósito",
-            riesgo: "Cuentas nuevas sin historial son sospechosas.",
-            opciones: [
-                { texto: "Depositar", valor: "depositar", correcta: false },
-                { texto: "No depositar", valor: "no-depositar", correcta: true }
-            ],
-            explicacion: "Nunca deposites a vendedores sin historial verificable."
-        },
-        {
-            id: 4,
-            plataforma: "Tienda 4",
-            icono: "🛍️",
-            situacion: "Tienda con RUC visible y dirección física",
-            riesgo: "Información verificable es señal de legitimidad.",
-            opciones: [
-                { texto: "Es más confiable", valor: "confiable", correcta: true },
-                { texto: "No importa", valor: "importa", correcta: false }
-            ],
-            explicacion: "Las tiendas legítimas muestran su información fiscal."
-        },
-        {
-            id: 5,
-            plataforma: "Pago",
-            icono: "💳",
-            situacion: "Solo aceptan transferencia anticipada",
-            riesgo: "Sin protección al comprador.",
-            opciones: [
-                { texto: "Transferir", valor: "transferir", correcta: false },
-                { texto: "Buscar otra opción", valor: "buscar", correcta: true }
-            ],
-            explicacion: "Las tiendas serias ofrecen múltiples formas de pago."
-        },
-        {
-            id: 6,
-            plataforma: "Tienda 6",
-            icono: "🛍️",
-            situacion: "Tienda conocida con opción contraentrega",
-            riesgo: "Pago contraentrega es más seguro.",
-            opciones: [
-                { texto: "Es más seguro", valor: "seguro", correcta: true },
-                { texto: "Es igual", valor: "igual", correcta: false }
-            ],
-            explicacion: "Contraentrega = pagas cuando recibes el producto."
-        },
-        {
-            id: 7,
-            plataforma: "Email",
-            icono: "📧",
-            situacion: "Oferta exclusiva por email con enlace",
-            riesgo: "Podría ser phishing disfrazado de oferta.",
-            opciones: [
-                { texto: "Hacer click", valor: "click", correcta: false },
-                { texto: "Ir directo a la web", valor: "web", correcta: true }
-            ],
-            explicacion: "Siempre ve directo a la web oficial, no por enlaces de email."
-        },
-        {
-            id: 8,
-            plataforma: "Reseñas",
-            icono: "⭐",
-            situacion: "Todas las reseñas son de 5 estrellas sin comentarios",
-            riesgo: "Podrían ser reseñas falsas.",
-            opciones: [
-                { texto: "Son genuinas", valor: "genuinas", correcta: false },
-                { texto: "Son sospechosas", valor: "sospechosas", correcta: true }
-            ],
-            explicacion: "Las reseñas reales tienen variedad y comentarios detallados."
-        },
-        {
-            id: 9,
-            plataforma: "Contacto",
-            icono: "📞",
-            situacion: "No hay teléfono ni dirección de contacto",
-            riesgo: "Imposible reclamar si hay problema.",
-            opciones: [
-                { texto: "No importa", valor: "importa", correcta: false },
-                { texto: "Es señal de alerta", valor: "alerta", correcta: true }
-            ],
-            explicacion: "Las tiendas serias tienen múltiples canales de contacto."
-        },
-        {
-            id: 10,
-            plataforma: "Políticas",
-            icono: "📋",
-            situacion: "Políticas de devolución claras y visibles",
-            riesgo: "Indica profesionalismo y confianza.",
-            opciones: [
-                { texto: "Es buena señal", valor: "buena", correcta: true },
-                { texto: "No es importante", valor: "importante", correcta: false }
-            ],
-            explicacion: "Las políticas claras protegen al comprador."
-        }
+        { id: 1, plataforma: "Tienda 1", icono: "🛍️", situacion: "iPhone 15 Pro a $299 (precio normal: $1,200)", riesgo: "Precio demasiado bueno para ser verdad.", opciones: [{ texto: "Comprar inmediatamente", valor: "comprar", correcta: false }, { texto: "Es estafa, no comprar", valor: "estafa", correcta: true }], explicacion: "Si es demasiado bueno para ser verdad, probablemente sea estafa." },
+        { id: 2, plataforma: "Tienda 2", icono: "🛍️", situacion: "Tienda con https:// y candado 🔒", riesgo: "El candado indica conexión segura.", opciones: [{ texto: "Es más segura", valor: "segura", correcta: true }, { texto: "No importa", valor: "importa", correcta: false }], explicacion: "https:// cifra tus datos durante la compra." },
+        { id: 3, plataforma: "Marketplace", icono: "📱", situacion: "Vendedor nuevo sin reseñas pide depósito", riesgo: "Cuentas nuevas sin historial son sospechosas.", opciones: [{ texto: "Depositar", valor: "depositar", correcta: false }, { texto: "No depositar", valor: "no-depositar", correcta: true }], explicacion: "Nunca deposites a vendedores sin historial verificable." },
+        { id: 4, plataforma: "Tienda 4", icono: "🛍️", situacion: "Tienda con RUC visible y dirección física", riesgo: "Información verificable es señal de legitimidad.", opciones: [{ texto: "Es más confiable", valor: "confiable", correcta: true }, { texto: "No importa", valor: "importa", correcta: false }], explicacion: "Las tiendas legítimas muestran su información fiscal." },
+        { id: 5, plataforma: "Pago", icono: "💳", situacion: "Solo aceptan transferencia anticipada", riesgo: "Sin protección al comprador.", opciones: [{ texto: "Transferir", valor: "transferir", correcta: false }, { texto: "Buscar otra opción", valor: "buscar", correcta: true }], explicacion: "Las tiendas serias ofrecen múltiples formas de pago." },
+        { id: 6, plataforma: "Tienda 6", icono: "🛍️", situacion: "Tienda conocida con opción contraentrega", riesgo: "Pago contraentrega es más seguro.", opciones: [{ texto: "Es más seguro", valor: "seguro", correcta: true }, { texto: "Es igual", valor: "igual", correcta: false }], explicacion: "Contraentrega = pagas cuando recibes el producto." },
+        { id: 7, plataforma: "Email", icono: "📧", situacion: "Oferta exclusiva por email con enlace", riesgo: "Podría ser phishing disfrazado de oferta.", opciones: [{ texto: "Hacer click", valor: "click", correcta: false }, { texto: "Ir directo a la web", valor: "web", correcta: true }], explicacion: "Siempre ve directo a la web oficial." },
+        { id: 8, plataforma: "Reseñas", icono: "⭐", situacion: "Todas las reseñas son de 5 estrellas sin comentarios", riesgo: "Podrían ser reseñas falsas.", opciones: [{ texto: "Son genuinas", valor: "genuinas", correcta: false }, { texto: "Son sospechosas", valor: "sospechosas", correcta: true }], explicacion: "Las reseñas reales tienen variedad." },
+        { id: 9, plataforma: "Contacto", icono: "📞", situacion: "No hay teléfono ni dirección de contacto", riesgo: "Imposible reclamar si hay problema.", opciones: [{ texto: "No importa", valor: "importa", correcta: false }, { texto: "Es señal de alerta", valor: "alerta", correcta: true }], explicacion: "Las tiendas serias tienen múltiples canales de contacto." },
+        { id: 10, plataforma: "Políticas", icono: "📋", situacion: "Políticas de devolución claras y visibles", riesgo: "Indica profesionalismo y confianza.", opciones: [{ texto: "Es buena señal", valor: "buena", correcta: true }, { texto: "No es importante", valor: "importante", correcta: false }], explicacion: "Las políticas claras protegen al comprador." }
     ];
     
-    function cargarNuevasPreguntas() {
-        const preguntasSeleccionadas = seleccionarPreguntasAleatorias(bancoPreguntas, 4);
-        renderizarPreguntas(preguntasSeleccionadas, 'contenedor-preguntas', 'verificarRespuestaCompras');
+    function seleccionarAleatorias(banco, cantidad) {
+        const mezclado = [...banco];
+        for (let i = mezclado.length - 1; i > 0; i--) {
+            const j = Math.floor(Math.random() * (i + 1));
+            [mezclado[i], mezclado[j]] = [mezclado[j], mezclado[i]];
+        }
+        return mezclado.slice(0, cantidad);
     }
     
-    function verificarRespuestaCompras(id, valor, boton) {
-        verificarRespuesta(id, valor, boton, bancoPreguntas);
+    function cargarNuevasPreguntas() {
+        const contenedor = document.getElementById('contenedor-preguntas');
+        contenedor.innerHTML = '';
+        const seleccionadas = seleccionarAleatorias(bancoPreguntas, 4);
+        
+        seleccionadas.forEach((p) => {
+            const html = `
+                <div class="correo-ejemplo" style="margin-bottom: 25px;">
+                    <h4>${p.icono} ${p.plataforma}</h4>
+                    <p><strong>Situación:</strong> ${p.situacion}</p>
+                    <p><strong>Riesgo:</strong> ${p.riesgo}</p>
+                    <div style="margin-top: 15px;">
+                        ${p.opciones.map(op => `
+                            <button onclick="verificar(${p.id}, '${op.valor}', this)" 
+                                    style="background-color: #3498db; margin: 5px; display: block; width: 100%; margin-bottom: 8px;">
+                                ${op.texto}
+                            </button>
+                        `).join('')}
+                    </div>
+                    <div id="resultado-${p.id}" style="margin-top: 10px; padding: 10px; display: none; border-radius: 8px;"></div>
+                </div>
+            `;
+            contenedor.innerHTML += html;
+        });
+    }
+    
+    function verificar(id, valor, boton) {
+        const pregunta = bancoPreguntas.find(p => p.id === id);
+        const resultado = document.getElementById(`resultado-${id}`);
+        const opciones = boton.parentElement.querySelectorAll('button');
+        opciones.forEach(btn => btn.disabled = true);
+        
+        const opcionCorrecta = pregunta.opciones.find(op => op.valor === valor);
+        if (opcionCorrecta && opcionCorrecta.correcta) {
+            resultado.className = 'fuerte';
+            resultado.innerHTML = `✅ ¡CORRECTO! ${pregunta.explicacion}`;
+        } else {
+            resultado.className = 'debil';
+            resultado.innerHTML = `❌ Incorrecto. ${pregunta.explicacion}`;
+        }
+        resultado.style.display = 'block';
     }
     
     window.onload = cargarNuevasPreguntas;
