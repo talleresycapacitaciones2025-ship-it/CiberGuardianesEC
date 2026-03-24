@@ -20,12 +20,7 @@
         
         <section class="juego">
             <h3>🎮 Desafío: Clasifica los mensajes</h3>
-            <p style="background-color: #fff3cd; padding: 15px; border-radius: 8px; border-left: 4px solid #ffa502; margin-bottom: 20px;">
-                💡 <strong>Nota:</strong> Cada vez que entres, verás 4 situaciones aleatorias de un banco de 10.
-            </p>
-            
             <div id="contenedor-preguntas"></div>
-            
             <button onclick="cargarNuevasPreguntas()" style="background-color: #9b59b6; margin-top: 20px; width: 100%;">🔄 Ver otras situaciones</button>
         </section>
         
@@ -50,138 +45,70 @@
         <p>Hecho con 💙 para Ecuador | CiberGuardianesEC</p>
     </footer>
     
-    <script src="../../../js/preguntas-aleatorias.js"></script>
     <script>
     const bancoPreguntas = [
-        {
-            id: 1,
-            plataforma: "Email 1",
-            icono: "📧",
-            situacion: "Correo de 'Banco Pichincha' desde seguridad@bancopichincha-verificacion.com",
-            riesgo: "El dominio no es el oficial del banco.",
-            opciones: [
-                { texto: "Es legítimo", valor: "legitimo", correcta: false },
-                { texto: "Es phishing", valor: "phishing", correcta: true }
-            ],
-            explicacion: "El dominio oficial es @bancopichincha.com, no @bancopichincha-verificacion.com"
-        },
-        {
-            id: 2,
-            plataforma: "Email 2",
-            icono: "📧",
-            situacion: "Mensaje urgente: 'Tu cuenta será bloqueada en 24 horas'",
-            riesgo: "La urgencia excesiva es señal de phishing.",
-            opciones: [
-                { texto: "Actuar rápido", valor: "actuar", correcta: false },
-                { texto: "Verificar primero", valor: "verificar", correcta: true }
-            ],
-            explicacion: "Los bancos no amenazan con bloqueos inmediatos por email."
-        },
-        {
-            id: 3,
-            plataforma: "WhatsApp",
-            icono: "💬",
-            situacion: "Desconocido pide tu clave de internet 'por seguridad'",
-            riesgo: "Ningún banco pide claves por WhatsApp.",
-            opciones: [
-                { texto: "Enviársela", valor: "enviar", correcta: false },
-                { texto: "Bloquear y reportar", valor: "reportar", correcta: true }
-            ],
-            explicacion: "Los bancos NUNCA piden contraseñas por mensaje."
-        },
-        {
-            id: 4,
-            plataforma: "Email 4",
-            icono: "📧",
-            situacion: "Correo de notificaciones@bancopichincha.com sobre estado de cuenta",
-            riesgo: "El dominio es oficial y no pide datos sensibles.",
-            opciones: [
-                { texto: "Es legítimo", valor: "legitimo", correcta: true },
-                { texto: "Es phishing", valor: "phishing", correcta: false }
-            ],
-            explicacion: "El dominio es correcto y el mensaje es informativo, no pide acción."
-        },
-        {
-            id: 5,
-            plataforma: "SMS",
-            icono: "📱",
-            situacion: "SMS: 'Ganaste un premio, haz click aquí para reclamar'",
-            riesgo: "Premios no solicitados son estafas comunes.",
-            opciones: [
-                { texto: "Hacer click", valor: "click", correcta: false },
-                { texto: "Ignorar y borrar", valor: "borrar", correcta: true }
-            ],
-            explicacion: "Si no participaste en ningún sorteo, es estafa."
-        },
-        {
-            id: 6,
-            plataforma: "Email 6",
-            icono: "📧",
-            situacion: "Correo con errores ortográficos y gramaticales",
-            riesgo: "Las empresas serias revisan sus comunicaciones.",
-            opciones: [
-                { texto: "No importa, puede ser legítimo", valor: "importa", correcta: false },
-                { texto: "Es señal de phishing", valor: "phishing", correcta: true }
-            ],
-            explicacion: "Los errores son una bandera roja común en phishing."
-        },
-        {
-            id: 7,
-            plataforma: "Link",
-            icono: "🔗",
-            situacion: "Enlace acortado (bit.ly/xyz123) en correo del banco",
-            riesgo: "Los bancos no usan enlaces acortados.",
-            opciones: [
-                { texto: "Hacer click", valor: "click", correcta: false },
-                { texto: "No hacer click", valor: "no-click", correcta: true }
-            ],
-            explicacion: "Los enlaces acortados ocultan el destino real."
-        },
-        {
-            id: 8,
-            plataforma: "Email 8",
-            icono: "📧",
-            situacion: "Te piden actualizar datos haciendo click en un enlace",
-            riesgo: "Los bancos no piden actualizar datos por email.",
-            opciones: [
-                { texto: "Actualizar mis datos", valor: "actualizar", correcta: false },
-                { texto: "Ir directamente al banco", valor: "banco", correcta: true }
-            ],
-            explicacion: "Si necesitas actualizar algo, ve directamente a la web oficial."
-        },
-        {
-            id: 9,
-            plataforma: "Llamada",
-            icono: "📞",
-            situacion: "Llamada de 'soporte técnico' pidiendo acceso a tu computadora",
-            riesgo: "Es una estafa común para instalar malware.",
-            opciones: [
-                { texto: "Darles acceso", valor: "acceso", correcta: false },
-                { texto: "Colgar y reportar", valor: "reportar", correcta: true }
-            ],
-            explicacion: "Nunca des acceso remoto a desconocidos."
-        },
-        {
-            id: 10,
-            plataforma: "Email 10",
-            icono: "📧",
-            situacion: "Correo con archivo adjunto inesperado de desconocido",
-            riesgo: "Los adjuntos pueden contener malware.",
-            opciones: [
-                { texto: "Abrir el adjunto", valor: "abrir", correcta: false },
-                { texto: "No abrir y borrar", valor: "borrar", correcta: true }
-            ],
-            explicacion: "Nunca abras adjuntos de remitentes desconocidos."
-        }
+        { id: 1, plataforma: "Email 1", icono: "📧", situacion: "Correo de 'Banco Pichincha' desde seguridad@bancopichincha-verificacion.com", riesgo: "El dominio no es el oficial del banco.", opciones: [{ texto: "Es legítimo", valor: "legitimo", correcta: false }, { texto: "Es phishing", valor: "phishing", correcta: true }], explicacion: "El dominio oficial es @bancopichincha.com" },
+        { id: 2, plataforma: "Email 2", icono: "📧", situacion: "Mensaje urgente: 'Tu cuenta será bloqueada en 24 horas'", riesgo: "La urgencia excesiva es señal de phishing.", opciones: [{ texto: "Actuar rápido", valor: "actuar", correcta: false }, { texto: "Verificar primero", valor: "verificar", correcta: true }], explicacion: "Los bancos no amenazan con bloqueos inmediatos." },
+        { id: 3, plataforma: "WhatsApp", icono: "💬", situacion: "Desconocido pide tu clave de internet 'por seguridad'", riesgo: "Ningún banco pide claves por WhatsApp.", opciones: [{ texto: "Enviársela", valor: "enviar", correcta: false }, { texto: "Bloquear y reportar", valor: "reportar", correcta: true }], explicacion: "Los bancos NUNCA piden contraseñas por mensaje." },
+        { id: 4, plataforma: "Email 4", icono: "📧", situacion: "Correo de notificaciones@bancopichincha.com sobre estado de cuenta", riesgo: "El dominio es oficial y no pide datos sensibles.", opciones: [{ texto: "Es legítimo", valor: "legitimo", correcta: true }, { texto: "Es phishing", valor: "phishing", correcta: false }], explicacion: "El dominio es correcto y el mensaje es informativo." },
+        { id: 5, plataforma: "SMS", icono: "📱", situacion: "SMS: 'Ganaste un premio, haz click aquí para reclamar'", riesgo: "Premios no solicitados son estafas comunes.", opciones: [{ texto: "Hacer click", valor: "click", correcta: false }, { texto: "Ignorar y borrar", valor: "borrar", correcta: true }], explicacion: "Si no participaste, es estafa." },
+        { id: 6, plataforma: "Email 6", icono: "📧", situacion: "Correo con errores ortográficos y gramaticales", riesgo: "Las empresas serias revisan sus comunicaciones.", opciones: [{ texto: "No importa", valor: "importa", correcta: false }, { texto: "Es señal de phishing", valor: "phishing", correcta: true }], explicacion: "Los errores son bandera roja común." },
+        { id: 7, plataforma: "Link", icono: "🔗", situacion: "Enlace acortado (bit.ly/xyz123) en correo del banco", riesgo: "Los bancos no usan enlaces acortados.", opciones: [{ texto: "Hacer click", valor: "click", correcta: false }, { texto: "No hacer click", valor: "no-click", correcta: true }], explicacion: "Los enlaces acortados ocultan el destino real." },
+        { id: 8, plataforma: "Email 8", icono: "📧", situacion: "Te piden actualizar datos haciendo click en un enlace", riesgo: "Los bancos no piden actualizar datos por email.", opciones: [{ texto: "Actualizar mis datos", valor: "actualizar", correcta: false }, { texto: "Ir directamente al banco", valor: "banco", correcta: true }], explicacion: "Ve directamente a la web oficial." },
+        { id: 9, plataforma: "Llamada", icono: "📞", situacion: "Llamada de 'soporte técnico' pidiendo acceso a tu computadora", riesgo: "Es una estafa común para instalar malware.", opciones: [{ texto: "Darles acceso", valor: "acceso", correcta: false }, { texto: "Colgar y reportar", valor: "reportar", correcta: true }], explicacion: "Nunca des acceso remoto a desconocidos." },
+        { id: 10, plataforma: "Email 10", icono: "📧", situacion: "Correo con archivo adjunto inesperado de desconocido", riesgo: "Los adjuntos pueden contener malware.", opciones: [{ texto: "Abrir el adjunto", valor: "abrir", correcta: false }, { texto: "No abrir y borrar", valor: "borrar", correcta: true }], explicacion: "Nunca abras adjuntos de remitentes desconocidos." }
     ];
     
-    function cargarNuevasPreguntas() {
-        const preguntasSeleccionadas = seleccionarPreguntasAleatorias(bancoPreguntas, 4);
-        renderizarPreguntas(preguntasSeleccionadas, 'contenedor-preguntas', 'verificarRespuestaPhishing');
+    function seleccionarAleatorias(banco, cantidad) {
+        const mezclado = [...banco];
+        for (let i = mezclado.length - 1; i > 0; i--) {
+            const j = Math.floor(Math.random() * (i + 1));
+            [mezclado[i], mezclado[j]] = [mezclado[j], mezclado[i]];
+        }
+        return mezclado.slice(0, cantidad);
     }
     
-    function verificarRespuestaPhishing(id, valor, boton) {
-        verificarRespuesta(id, valor, boton, bancoPreguntas);
+    function cargarNuevasPreguntas() {
+        const contenedor = document.getElementById('contenedor-preguntas');
+        contenedor.innerHTML = '';
+        const seleccionadas = seleccionarAleatorias(bancoPreguntas, 4);
+        
+        seleccionadas.forEach((p) => {
+            const html = `
+                <div class="correo-ejemplo" style="margin-bottom: 25px;">
+                    <h4>${p.icono} ${p.plataforma}</h4>
+                    <p><strong>Situación:</strong> ${p.situacion}</p>
+                    <p><strong>Riesgo:</strong> ${p.riesgo}</p>
+                    <div style="margin-top: 15px;">
+                        ${p.opciones.map(op => `
+                            <button onclick="verificar(${p.id}, '${op.valor}', this)" 
+                                    style="background-color: #3498db; margin: 5px; display: block; width: 100%; margin-bottom: 8px;">
+                                ${op.texto}
+                            </button>
+                        `).join('')}
+                    </div>
+                    <div id="resultado-${p.id}" style="margin-top: 10px; padding: 10px; display: none; border-radius: 8px;"></div>
+                </div>
+            `;
+            contenedor.innerHTML += html;
+        });
+    }
+    
+    function verificar(id, valor, boton) {
+        const pregunta = bancoPreguntas.find(p => p.id === id);
+        const resultado = document.getElementById(`resultado-${id}`);
+        const opciones = boton.parentElement.querySelectorAll('button');
+        opciones.forEach(btn => btn.disabled = true);
+        
+        const opcionCorrecta = pregunta.opciones.find(op => op.valor === valor);
+        if (opcionCorrecta && opcionCorrecta.correcta) {
+            resultado.className = 'fuerte';
+            resultado.innerHTML = `✅ ¡CORRECTO! ${pregunta.explicacion}`;
+        } else {
+            resultado.className = 'debil';
+            resultado.innerHTML = `❌ Incorrecto. ${pregunta.explicacion}`;
+        }
+        resultado.style.display = 'block';
     }
     
     window.onload = cargarNuevasPreguntas;
