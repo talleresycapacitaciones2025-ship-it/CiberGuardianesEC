@@ -19,13 +19,14 @@
         </section>
         
         <section class="juego">
-            <h3>🎮 Desafío: Crea tu contraseña</h3>
-            <p>Escribe una contraseña y verifica qué tan segura es:</p>
+            <h3>🎮 Desafío: Verifica contraseñas</h3>
+            <p style="background-color: #fff3cd; padding: 15px; border-radius: 8px; border-left: 4px solid #ffa502; margin-bottom: 20px;">
+                💡 <strong>Nota:</strong> Cada vez que entres, verás 4 situaciones aleatorias de un banco de 10.
+            </p>
             
-            <input type="text" id="passwordInput" placeholder="Escribe una contraseña">
-            <button onclick="verificarPassword()">Verificar Fortaleza</button>
+            <div id="contenedor-preguntas"></div>
             
-            <div id="resultado"></div>
+            <button onclick="cargarNuevasPreguntas()" style="background-color: #9b59b6; margin-top: 20px; width: 100%;">🔄 Ver otras situaciones</button>
         </section>
         
         <section class="aprende">
@@ -33,19 +34,9 @@
             <ul>
                 <li>Usa al menos 12 caracteres</li>
                 <li>Combina mayúsculas, minúsculas, números y símbolos</li>
-                <li>No uses información personal (nombres, fechas de nacimiento)</li>
-                <li>No uses contraseñas comunes como "123456" o "password"</li>
-                <li>Usa un gestor de contraseñas para recordarlas</li>
-                <li>Activa la autenticación de dos factores siempre que puedas</li>
-            </ul>
-        </section>
-        
-        <section class="estadisticas">
-            <h3>📊 ¿Sabías qué?</h3>
-            <ul>
-                <li>El 80% de las brechas de seguridad son por contraseñas débiles</li>
-                <li>Un hacker puede crackear "123456" en menos de 1 segundo</li>
-                <li>Una contraseña de 12 caracteres con símbolos tarda 34,000 años en crackearse</li>
+                <li>No uses información personal</li>
+                <li>Usa un gestor de contraseñas</li>
+                <li>Activa la autenticación de dos factores</li>
             </ul>
         </section>
         
@@ -59,30 +50,144 @@
         <p>Hecho con 💙 para Ecuador | CiberGuardianesEC</p>
     </footer>
     
+    <script src="../../../js/preguntas-aleatorias.js"></script>
     <script>
-    function verificarPassword() {
-        const password = document.getElementById('passwordInput').value;
-        const resultado = document.getElementById('resultado');
-        
-        let fortaleza = 0;
-        
-        if (password.length >= 12) fortaleza++;
-        if (/[A-Z]/.test(password)) fortaleza++;
-        if (/[a-z]/.test(password)) fortaleza++;
-        if (/[0-9]/.test(password)) fortaleza++;
-        if (/[^A-Za-z0-9]/.test(password)) fortaleza++;
-        
-        if (fortaleza >= 4) {
-            resultado.className = 'fuerte';
-            resultado.innerHTML = '✅ ¡Contraseña FUERTE! Los hackers lo tendrán muy difícil.';
-        } else if (fortaleza >= 2) {
-            resultado.className = 'advertencia';
-            resultado.innerHTML = '⚠️ Contraseña REGULAR. Puedes mejorarla agregando más caracteres y variedad.';
-        } else {
-            resultado.className = 'debil';
-            resultado.innerHTML = '❌ Contraseña DÉBIL. Los hackers la crackearán en segundos.';
+    // BANCO DE 10 SITUACIONES SOBRE CONTRASEÑAS
+    const bancoPreguntas = [
+        {
+            id: 1,
+            plataforma: "Situación 1",
+            icono: "🔑",
+            situacion: "Tu contraseña es '123456'",
+            riesgo: "Los hackers pueden crackearla en menos de 1 segundo.",
+            opciones: [
+                { texto: "Está bien, es fácil de recordar", valor: "bien", correcta: false },
+                { texto: "Cambiarla por una más fuerte", valor: "cambiar", correcta: true }
+            ],
+            explicacion: "'123456' es la contraseña más común y fácil de crackear."
+        },
+        {
+            id: 2,
+            plataforma: "Situación 2",
+            icono: "🔑",
+            situacion: "Usas la misma contraseña para todo",
+            riesgo: "Si hackean una cuenta, tienen acceso a todas.",
+            opciones: [
+                { texto: "Es práctico, no hay problema", valor: "practico", correcta: false },
+                { texto: "Usar contraseñas diferentes", valor: "diferentes", correcta: true }
+            ],
+            explicacion: "Cada cuenta debe tener su propia contraseña única."
+        },
+        {
+            id: 3,
+            plataforma: "Situación 3",
+            icono: "🔑",
+            situacion: "Tu contraseña es 'Maria2000' (tu nombre y año de nacimiento)",
+            riesgo: "Información personal es fácil de adivinar.",
+            opciones: [
+                { texto: "Es segura porque tiene números", valor: "segura", correcta: false },
+                { texto: "Cambiarla por algo sin datos personales", valor: "cambiar", correcta: true }
+            ],
+            explicacion: "Nunca uses información personal en contraseñas."
+        },
+        {
+            id: 4,
+            plataforma: "Situación 4",
+            icono: "🔑",
+            situacion: "Tu contraseña es 'P@ssw0rd!2024#'",
+            riesgo: "Tiene 16 caracteres, mayúsculas, minúsculas, números y símbolos.",
+            opciones: [
+                { texto: "Es muy segura", valor: "segura", correcta: true },
+                { texto: "Debería ser más corta", valor: "corta", correcta: false }
+            ],
+            explicacion: "¡Excelente! Esa es una contraseña fuerte."
+        },
+        {
+            id: 5,
+            plataforma: "Situación 5",
+            icono: "🔑",
+            situacion: "Un amigo te pide tu contraseña para 'ayudarte'",
+            riesgo: "Nunca debes compartir tu contraseña con nadie.",
+            opciones: [
+                { texto: "Dársela porque es mi amigo", valor: "dar", correcta: false },
+                { texto: "Negarme amablemente", valor: "negar", correcta: true }
+            ],
+            explicacion: "Las contraseñas son personales, nunca las compartas."
+        },
+        {
+            id: 6,
+            plataforma: "Situación 6",
+            icono: "🔑",
+            situacion: "El banco te pide tu contraseña por email",
+            riesgo: "Los bancos NUNCA piden contraseñas por email.",
+            opciones: [
+                { texto: "Enviársela", valor: "enviar", correcta: false },
+                { texto: "Reportar como phishing", valor: "reportar", correcta: true }
+            ],
+            explicacion: "Es una estafa. Los bancos nunca piden contraseñas por correo."
+        },
+        {
+            id: 7,
+            plataforma: "Situación 7",
+            icono: "🔑",
+            situacion: "Tu contraseña tiene 8 caracteres",
+            riesgo: "8 caracteres es el mínimo, pero 12+ es mucho más seguro.",
+            opciones: [
+                { texto: "Está bien así", valor: "bien", correcta: false },
+                { texto: "Agregar más caracteres", valor: "agregar", correcta: true }
+            ],
+            explicacion: "Mientras más larga, más difícil de crackear."
+        },
+        {
+            id: 8,
+            plataforma: "Situación 8",
+            icono: "🔑",
+            situacion: "Usas un gestor de contraseñas",
+            riesgo: "Los gestores son seguros y te ayudan a tener contraseñas únicas.",
+            opciones: [
+                { texto: "Es una buena práctica", valor: "bien", correcta: true },
+                { texto: "Es peligroso", valor: "peligro", correcta: false }
+            ],
+            explicacion: "Los gestores como LastPass o Bitwarden son recomendados."
+        },
+        {
+            id: 9,
+            plataforma: "Situación 9",
+            icono: "🔑",
+            situacion: "Activas la autenticación de dos factores",
+            riesgo: "Añade una capa extra de seguridad incluso si hackean tu contraseña.",
+            opciones: [
+                { texto: "Es innecesario", valor: "innecesario", correcta: false },
+                { texto: "Es muy recomendable", valor: "recomendable", correcta: true }
+            ],
+            explicacion: "El 2FA es una de las mejores protecciones que puedes activar."
+        },
+        {
+            id: 10,
+            plataforma: "Situación 10",
+            icono: "🔑",
+            situacion: "Tu contraseña es 'password'",
+            riesgo: "Es la segunda contraseña más común del mundo.",
+            opciones: [
+                { texto: "Es clásica, funciona", valor: "clasica", correcta: false },
+                { texto: "Cambiarla inmediatamente", valor: "cambiar", correcta: true }
+            ],
+            explicacion: "'password' es extremadamente insegura. Cámbiala ya."
         }
+    ];
+    
+    // Cargar 4 preguntas aleatorias al iniciar
+    function cargarNuevasPreguntas() {
+        const preguntasSeleccionadas = seleccionarPreguntasAleatorias(bancoPreguntas, 4);
+        renderizarPreguntas(preguntasSeleccionadas, 'contenedor-preguntas', 'verificarRespuestaContraseñas');
     }
+    
+    function verificarRespuestaContraseñas(id, valor, boton) {
+        verificarRespuesta(id, valor, boton, bancoPreguntas);
+    }
+    
+    // Cargar al iniciar la página
+    window.onload = cargarNuevasPreguntas;
     </script>
 </body>
 </html>
