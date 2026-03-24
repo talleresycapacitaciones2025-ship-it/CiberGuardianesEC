@@ -2,30 +2,266 @@
 <html lang="es">
 <head>
     <meta charset="UTF-8">
-    <title>CiberGuardianesEC</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>CiberGuardianesEC - Inicio</title>
     <link rel="stylesheet" href="app/css/styles.css">
+    <style>
+    * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+    }
+    
+    body {
+        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        min-height: 100vh;
+        padding: 20px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+    }
+    
+    .header-principal {
+        background: linear-gradient(135deg, #2c3e50 0%, #3498db 100%);
+        color: white;
+        padding: 25px 20px;
+        text-align: center;
+        border-radius: 15px;
+        margin-bottom: 25px;
+        box-shadow: 0 8px 20px rgba(0,0,0,0.2);
+        width: 100%;
+        max-width: 600px;
+    }
+    
+    .header-principal h1 {
+        font-size: 2em;
+        margin-bottom: 8px;
+        text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+    }
+    
+    .header-principal p {
+        font-size: 1em;
+        opacity: 0.95;
+    }
+    
+    .contenedor-principal {
+        background: white;
+        padding: 30px 25px;
+        border-radius: 15px;
+        box-shadow: 0 10px 30px rgba(0,0,0,0.15);
+        width: 100%;
+        max-width: 600px;
+        margin: 0 auto;
+    }
+    
+    .bienvenida {
+        margin-bottom: 30px;
+    }
+    
+    .bienvenida h2 {
+        color: #2c3e50;
+        font-size: 1.6em;
+        margin-bottom: 10px;
+        border-bottom: 3px solid #3498db;
+        padding-bottom: 10px;
+    }
+    
+    .bienvenida p {
+        color: #7f8c8d;
+        font-size: 1.05em;
+        line-height: 1.6;
+    }
+    
+    .modo-seleccion {
+        margin-bottom: 25px;
+    }
+    
+    .modo-seleccion h3 {
+        color: #2c3e50;
+        font-size: 1.3em;
+        margin-bottom: 20px;
+    }
+    
+    .opcion-modo {
+        border: 3px solid #3498db;
+        padding: 25px 20px;
+        margin: 15px 0;
+        border-radius: 12px;
+        text-align: center;
+        background: linear-gradient(135deg, #ffffff 0%, #f8f9fa 100%);
+        transition: all 0.3s ease;
+        box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+    }
+    
+    .opcion-modo:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 8px 20px rgba(0,0,0,0.15);
+        border-color: #9b59b6;
+    }
+    
+    .opcion-modo h4 {
+        color: #2c3e50;
+        font-size: 1.2em;
+        margin-bottom: 8px;
+    }
+    
+    .opcion-modo p {
+        color: #7f8c8d;
+        margin-bottom: 15px;
+    }
+    
+    .btn-modulo {
+        display: inline-block;
+        padding: 14px 28px;
+        background: linear-gradient(135deg, #3498db 0%, #2980b9 100%);
+        color: white;
+        text-decoration: none;
+        border-radius: 8px;
+        margin: 5px;
+        font-weight: bold;
+        transition: all 0.3s ease;
+        box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        font-size: 0.95em;
+    }
+    
+    .btn-modulo:hover {
+        background: linear-gradient(135deg, #2980b9 0%, #3498db 100%);
+        transform: translateY(-3px);
+        box-shadow: 0 6px 12px rgba(0,0,0,0.2);
+    }
+    
+    .footer-principal {
+        text-align: center;
+        margin-top: 25px;
+        padding: 15px;
+        color: white;
+        font-size: 0.9em;
+        opacity: 0.9;
+    }
+    
+    /* Responsive para móviles */
+    @media (max-width: 600px) {
+        body {
+            padding: 15px;
+        }
+        
+        .header-principal {
+            padding: 20px 15px;
+            margin-bottom: 20px;
+        }
+        
+        .header-principal h1 {
+            font-size: 1.6em;
+        }
+        
+        .header-principal p {
+            font-size: 0.9em;
+        }
+        
+        .contenedor-principal {
+            padding: 20px 15px;
+        }
+        
+        .bienvenida h2 {
+            font-size: 1.3em;
+        }
+        
+        .bienvenida p {
+            font-size: 0.95em;
+        }
+        
+        .modo-seleccion h3 {
+            font-size: 1.1em;
+        }
+        
+        .opcion-modo {
+            padding: 20px 15px;
+            margin: 12px 0;
+        }
+        
+        .opcion-modo h4 {
+            font-size: 1.1em;
+        }
+        
+        .opcion-modo p {
+            font-size: 0.9em;
+        }
+        
+        .btn-modulo {
+            display: block;
+            width: 100%;
+            padding: 16px 20px;
+            margin: 8px 0;
+            font-size: 1em;
+            text-align: center;
+        }
+        
+        .footer-principal {
+            font-size: 0.85em;
+            padding: 12px;
+        }
+    }
+    
+    /* Para pantallas muy pequeñas */
+    @media (max-width: 400px) {
+        .header-principal h1 {
+            font-size: 1.4em;
+        }
+        
+        .bienvenida h2 {
+            font-size: 1.2em;
+        }
+        
+        .opcion-modo h4 {
+            font-size: 1em;
+        }
+    }
+    </style>
 </head>
 <body>
-    <header>
+    <div class="header-principal">
         <h1>🛡️ CiberGuardianesEC</h1>
         <p>App educativa de ciberseguridad para Ecuador</p>
-    </header>
+    </div>
     
-    <main>
-        <h2>¡Bienvenido/a!</h2>
-        <p>Aprende a protegerte en internet.</p>
+    <div class="contenedor-principal">
+        <div class="bienvenida">
+            <h2>¡Bienvenido/a!</h2>
+            <p>Aprende a protegerte en internet de forma divertida y segura.</p>
+        </div>
         
-        <div style="border: 2px solid #3498db; padding: 20px; margin: 20px 0; border-radius: 10px;">
-    <h3>👤 Individual</h3>
-    <p>Aprende a tu propio ritmo</p>
-   <a href="app/modulos/contrasenas/" style="display: inline-block; padding: 10px 20px; background-color: #3498db; color: white; text-decoration: none; border-radius: 5px; margin: 10px 5px;">Módulo 1: Contraseñas</a>
-<a href="app/modulos/phishing/" style="display: inline-block; padding: 10px 20px; background-color: #e74c3c; color: white; text-decoration: none; border-radius: 5px; margin: 10px 5px;">Módulo 2: Phishing</a>
-<a href="app/modulos/redes-sociales/" style="display: inline-block; padding: 10px 20px; background-color: #9b59b6; color: white; text-decoration: none; border-radius: 5px; margin: 10px 5px;">Módulo 3: Redes Sociales</a>
-<a href="app/modulos/compras-online/" style="display: inline-block; padding: 10px 20px; background-color: #f39c12; color: white; text-decoration: none; border-radius: 5px; margin: 10px 5px;">Módulo 4: Compras Online</a>
-    </main>
+        <div class="modo-seleccion">
+            <h3>📱 Elige tu modo:</h3>
+            
+            <div class="opcion-modo">
+                <h4>👤 Individual</h4>
+                <p>Aprende a tu propio ritmo</p>
+                <div>
+                    <a href="app/modulos/contrasenas/" class="btn-modulo">Módulo 1: Contraseñas</a>
+                    <a href="app/modulos/phishing/" class="btn-modulo">Módulo 2: Phishing</a>
+                    <a href="app/modulos/redes-sociales/" class="btn-modulo">Módulo 3: Redes Sociales</a>
+                    <a href="app/modulos/compras-online/" class="btn-modulo">Módulo 4: Compras Online</a>
+                </div>
+            </div>
+            
+            <div class="opcion-modo" style="opacity: 0.6;">
+                <h4>👨‍👩‍👧‍👦 Familiar</h4>
+                <p>Aprende con tu familia</p>
+                <span style="background: #95a5a6; color: white; padding: 8px 16px; border-radius: 6px; display: inline-block; font-size: 0.9em;">Próximamente</span>
+            </div>
+            
+            <div class="opcion-modo" style="opacity: 0.6;">
+                <h4>🏘️ Comunitario</h4>
+                <p>Retos con tu comunidad</p>
+                <span style="background: #95a5a6; color: white; padding: 8px 16px; border-radius: 6px; display: inline-block; font-size: 0.9em;">Próximamente</span>
+            </div>
+        </div>
+    </div>
     
-    <footer>
-        <p>Hecho con 💙 para Ecuador</p>
-    </footer>
+    <div class="footer-principal">
+        <p>Hecho con 💙 para Ecuador | CiberGuardianesEC</p>
+    </div>
 </body>
 </html>
