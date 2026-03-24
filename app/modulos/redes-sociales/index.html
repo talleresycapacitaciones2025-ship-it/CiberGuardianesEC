@@ -5,6 +5,125 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Módulo 3: Redes Sociales y Privacidad</title>
     <link rel="stylesheet" href="../../../css/styles.css">
+    <style>
+    .situacion-card {
+        background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+        border-left: 5px solid #9b59b6;
+        padding: 20px;
+        margin: 20px 0;
+        border-radius: 10px;
+        box-shadow: 0 3px 10px rgba(0,0,0,0.1);
+    }
+    .situacion-card h4 {
+        margin: 0 0 10px 0;
+        color: #2c3e50;
+        font-size: 1.2em;
+    }
+    .situacion-card p {
+        margin: 8px 0;
+        line-height: 1.5;
+    }
+    .opciones-container {
+        display: flex;
+        gap: 10px;
+        margin-top: 15px;
+        flex-wrap: wrap;
+    }
+    .opcion-btn {
+        padding: 10px 20px;
+        border: none;
+        border-radius: 6px;
+        cursor: pointer;
+        font-weight: bold;
+        font-size: 14px;
+        transition: all 0.3s ease;
+        color: white;
+        flex: 1;
+        min-width: 150px;
+    }
+    .opcion-btn:hover:not(:disabled) {
+        transform: translateY(-2px);
+        box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+    }
+    .opcion-btn:disabled {
+        opacity: 0.6;
+        cursor: not-allowed;
+    }
+    .btn-1 { background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); }
+    .btn-2 { background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%); }
+    .btn-3 { background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%); }
+    .btn-4 { background: linear-gradient(135deg, #43e97b 0%, #38f9d7 100%); }
+    .resultado {
+        margin-top: 12px;
+        padding: 12px;
+        border-radius: 6px;
+        font-weight: bold;
+        display: none;
+        animation: fadeIn 0.4s ease;
+    }
+    @keyframes fadeIn {
+        from { opacity: 0; transform: translateY(-10px); }
+        to { opacity: 1; transform: translateY(0); }
+    }
+    .btn-recargar {
+        background: linear-gradient(135deg, #fa709a 0%, #fee140 100%);
+        color: white;
+        padding: 12px 25px;
+        border: none;
+        border-radius: 8px;
+        cursor: pointer;
+        font-weight: bold;
+        font-size: 15px;
+        width: 100%;
+        margin-top: 20px;
+        transition: all 0.3s ease;
+    }
+    .btn-recargar:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 6px 12px rgba(0,0,0,0.2);
+    }
+    .btn-intentar {
+        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        color: white;
+        padding: 10px 20px;
+        border: none;
+        border-radius: 6px;
+        cursor: pointer;
+        font-weight: bold;
+        margin-top: 10px;
+        transition: all 0.3s ease;
+    }
+    .btn-intentar:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+    }
+    .nav-buttons {
+        display: flex;
+        gap: 15px;
+        margin-top: 30px;
+        flex-wrap: wrap;
+    }
+    .nav-btn {
+        flex: 1;
+        min-width: 200px;
+        padding: 12px 25px;
+        background: linear-gradient(135deg, #3498db 0%, #2980b9 100%);
+        color: white;
+        text-decoration: none;
+        border-radius: 8px;
+        text-align: center;
+        font-weight: bold;
+        transition: all 0.3s ease;
+        display: inline-block;
+    }
+    .nav-btn:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 6px 12px rgba(0,0,0,0.2);
+    }
+    .nav-btn.secundario {
+        background: linear-gradient(135deg, #95a5a6 0%, #7f8c8d 100%);
+    }
+    </style>
 </head>
 <body>
     <header>
@@ -21,7 +140,7 @@
         <section class="juego">
             <h3>🎮 Desafío: Configura tu privacidad</h3>
             <div id="contenedor-preguntas"></div>
-            <button onclick="cargarNuevasPreguntas()" style="background-color: #9b59b6; margin-top: 20px; width: 100%;">🔄 Ver otras situaciones</button>
+            <button onclick="cargarNuevasPreguntas()" class="btn-recargar">🔄 Ver otras situaciones</button>
         </section>
         
         <section class="aprende">
@@ -34,10 +153,10 @@
             </ul>
         </section>
         
-        <nav class="navegacion">
-            <a href="../../../index.html">← Volver al inicio</a>
-            <a href="../phishing/">← Módulo anterior: Phishing</a>
-        </nav>
+        <div class="nav-buttons">
+            <a href="../../../index.html" class="nav-btn secundario">← Volver al inicio</a>
+            <a href="../phishing/" class="nav-btn secundario">← Módulo anterior: Phishing</a>
+        </div>
     </main>
     
     <footer>
@@ -46,22 +165,28 @@
     
     <script>
     const bancoPreguntas = [
-        { id: 1, plataforma: "Facebook", icono: "📘", situacion: "Tus publicaciones son visibles para 'Público'", riesgo: "Cualquier persona puede ver tus fotos e información.", opciones: [{ texto: "Dejarlo en Público", valor: "publico", correcta: false }, { texto: "Cambiar a 'Solo Amigos'", valor: "amigos", correcta: true }], explicacion: "'Solo Amigos' es el equilibrio perfecto." },
-        { id: 2, plataforma: "Instagram", icono: "📷", situacion: "Tu cuenta es 'Pública'", riesgo: "Cualquiera puede ver y descargar tus fotos.", opciones: [{ texto: "Dejarla Pública", valor: "publica", correcta: false }, { texto: "Cambiar a Privada", valor: "privada", correcta: true }], explicacion: "Cuenta privada = tú decides quién te sigue." },
-        { id: 3, plataforma: "WhatsApp", icono: "💬", situacion: "Tu foto y estado son visibles para 'Todos'", riesgo: "Desconocidos pueden ver tu información.", opciones: [{ texto: "Dejar en 'Todos'", valor: "todos", correcta: false }, { texto: "Cambiar a 'Mis Contactos'", valor: "contactos", correcta: true }], explicacion: "Solo tus contactos deberían ver esta información." },
-        { id: 4, plataforma: "TikTok", icono: "🎵", situacion: "Tu cuenta de TikTok es 'Pública'", riesgo: "Desconocidos pueden ver y descargar tus videos.", opciones: [{ texto: "Dejarla Pública", valor: "publica", correcta: false }, { texto: "Cambiar a Privada", valor: "privada", correcta: true }], explicacion: "Cuenta privada = solo seguidores aprobados ven tus videos." },
-        { id: 5, plataforma: "TikTok", icono: "🎵", situacion: "Desconocido pide tu WhatsApp en comentarios", riesgo: "Podría ser un estafador.", opciones: [{ texto: "Darle mi número", valor: "dar", correcta: false }, { texto: "Ignorar y reportar", valor: "reportar", correcta: true }], explicacion: "Nunca compartas datos personales con desconocidos." },
-        { id: 6, plataforma: "Facebook", icono: "📘", situacion: "Solicitud de amistad de desconocido", riesgo: "Podría ser perfil falso.", opciones: [{ texto: "Aceptar", valor: "aceptar", correcta: false }, { texto: "Rechazar", valor: "rechazar", correcta: true }], explicacion: "Si no lo conoces, no lo aceptes." },
-        { id: 7, plataforma: "Instagram", icono: "📷", situacion: "Te piden votar en concurso enviando datos", riesgo: "Es estafa para robar información.", opciones: [{ texto: "Enviar mis datos", valor: "enviar", correcta: false }, { texto: "No enviar y reportar", valor: "reportar", correcta: true }], explicacion: "Concursos reales no piden datos sensibles por DM." },
-        { id: 8, plataforma: "WhatsApp", icono: "💬", situacion: "'Familiar' pide dinero urgente por mensaje", riesgo: "Podría ser suplantación de identidad.", opciones: [{ texto: "Enviar dinero", valor: "enviar", correcta: false }, { texto: "Verificar llamando", valor: "verificar", correcta: true }], explicacion: "Siempre verifica por otro medio antes de enviar dinero." },
-        { id: 9, plataforma: "TikTok", icono: "🎵", situacion: "Te ofrecen dinero por hacer videos 'para adultos'", riesgo: "Es explotación y puede ser peligroso.", opciones: [{ texto: "Aceptar la oferta", valor: "aceptar", correcta: false }, { texto: "Reportar y bloquear", valor: "reportar", correcta: true }], explicacion: "Reporta cualquier contenido inapropiado inmediatamente." },
-        { id: 10, plataforma: "Facebook", icono: "📘", situacion: "Activas la autenticación de dos factores", riesgo: "Añade capa extra de seguridad.", opciones: [{ texto: "Es innecesario", valor: "innecesario", correcta: false }, { texto: "Es muy recomendable", valor: "recomendable", correcta: true }], explicacion: "El 2FA protege tu cuenta." },
-        { id: 11, plataforma: "Instagram", icono: "📷", situacion: "Compartes tu ubicación en tiempo real en historias", riesgo: "Cualquiera sabe dónde estás.", opciones: [{ texto: "Está bien, es divertido", valor: "bien", correcta: false }, { texto: "No compartir ubicación", valor: "no-compartir", correcta: true }], explicacion: "Compartir ubicación en tiempo real puede ser peligroso." },
-        { id: 12, plataforma: "WhatsApp", icono: "💬", situacion: "Recibes cadena de 'comparte o tendrás mala suerte'", riesgo: "Es spam que puede contener malware.", opciones: [{ texto: "Compartir con amigos", valor: "compartir", correcta: false }, { texto: "Borrar y salir del grupo", valor: "borrar", correcta: true }], explicacion: "Las cadenas son spam. No las compartas." }
+        { id: 1, icono: "📘", situacion: "Tus publicaciones son visibles para 'Público'", opciones: [{ texto: "Dejarlo en Público", valor: "publico", correcta: false }, { texto: "Cambiar a 'Solo Amigos'", valor: "amigos", correcta: true }], tip: "'Solo Amigos' es el equilibrio perfecto entre compartir y protegerte." },
+        { id: 2, icono: "📷", situacion: "Tu cuenta es 'Pública'", opciones: [{ texto: "Dejarla Pública", valor: "publica", correcta: false }, { texto: "Cambiar a Privada", valor: "privada", correcta: true }], tip: "Cuenta privada = tú decides quién te sigue y ve tu contenido." },
+        { id: 3, icono: "💬", situacion: "Tu foto y estado son visibles para 'Todos'", opciones: [{ texto: "Dejar en 'Todos'", valor: "todos", correcta: false }, { texto: "Cambiar a 'Mis Contactos'", valor: "contactos", correcta: true }], tip: "Solo tus contactos guardados deberían ver esta información personal." },
+        { id: 4, icono: "🎵", situacion: "Tu cuenta de TikTok es 'Pública'", opciones: [{ texto: "Dejarla Pública", valor: "publica", correcta: false }, { texto: "Cambiar a Privada", valor: "privada", correcta: true }], tip: "Cuenta privada = solo seguidores aprobados ven tus videos." },
+        { id: 5, icono: "🎵", situacion: "Desconocido pide tu WhatsApp en comentarios", opciones: [{ texto: "Darle mi número", valor: "dar", correcta: false }, { texto: "Ignorar y reportar", valor: "reportar", correcta: true }], tip: "Nunca compartas datos personales con desconocidos. Repórtalo." },
+        { id: 6, icono: "📘", situacion: "Solicitud de amistad de desconocido", opciones: [{ texto: "Aceptar", valor: "aceptar", correcta: false }, { texto: "Rechazar", valor: "rechazar", correcta: true }], tip: "Si no lo conoces en persona, mejor no lo aceptes." },
+        { id: 7, icono: "📷", situacion: "Te piden votar en concurso enviando datos", opciones: [{ texto: "Enviar mis datos", valor: "enviar", correcta: false }, { texto: "No enviar y reportar", valor: "reportar", correcta: true }], tip: "Concursos reales no piden datos sensibles por DM." },
+        { id: 8, icono: "💬", situacion: "'Familiar' pide dinero urgente por mensaje", opciones: [{ texto: "Enviar dinero", valor: "enviar", correcta: false }, { texto: "Verificar llamando", valor: "verificar", correcta: true }], tip: "Siempre verifica por otro medio antes de enviar dinero." },
+        { id: 9, icono: "🎵", situacion: "Te ofrecen dinero por hacer videos 'para adultos'", opciones: [{ texto: "Aceptar la oferta", valor: "aceptar", correcta: false }, { texto: "Reportar y bloquear", valor: "reportar", correcta: true }], tip: "Reporta cualquier contenido inapropiado inmediatamente." },
+        { id: 10, icono: "📘", situacion: "Activas la autenticación de dos factores", opciones: [{ texto: "Es innecesario", valor: "innecesario", correcta: false }, { texto: "Es muy recomendable", valor: "recomendable", correcta: true }], tip: "El 2FA protege tu cuenta incluso si hackean tu contraseña." },
+        { id: 11, icono: "📷", situacion: "Compartes tu ubicación en tiempo real en historias", opciones: [{ texto: "Está bien, es divertido", valor: "bien", correcta: false }, { texto: "No compartir ubicación", valor: "no-compartir", correcta: true }], tip: "Compartir ubicación en tiempo real puede ser peligroso." },
+        { id: 12, icono: "💬", situacion: "Recibes cadena de 'comparte o tendrás mala suerte'", opciones: [{ texto: "Compartir con amigos", valor: "compartir", correcta: false }, { texto: "Borrar y salir del grupo", valor: "borrar", correcta: true }], tip: "Las cadenas son spam. No las compartas." }
     ];
     
+    let preguntasUsadas = [];
+    
     function seleccionarAleatorias(banco, cantidad) {
-        const mezclado = [...banco];
+        const disponibles = banco.filter(p => !preguntasUsadas.includes(p.id));
+        if (disponibles.length < cantidad) {
+            preguntasUsadas = [];
+        }
+        const mezclado = [...banco].filter(p => !preguntasUsadas.includes(p.id));
         for (let i = mezclado.length - 1; i > 0; i--) {
             const j = Math.floor(Math.random() * (i + 1));
             [mezclado[i], mezclado[j]] = [mezclado[j], mezclado[i]];
@@ -75,20 +200,18 @@
         const seleccionadas = seleccionarAleatorias(bancoPreguntas, 4);
         
         seleccionadas.forEach((p) => {
+            preguntasUsadas.push(p.id);
             const html = `
-                <div class="correo-ejemplo" style="margin-bottom: 25px;">
-                    <h4>${p.icono} ${p.plataforma}</h4>
-                    <p><strong>Situación:</strong> ${p.situacion}</p>
-                    <p><strong>Riesgo:</strong> ${p.riesgo}</p>
-                    <div style="margin-top: 15px;">
-                        ${p.opciones.map(op => `
-                            <button onclick="verificar(${p.id}, '${op.valor}', this)" 
-                                    style="background-color: #3498db; margin: 5px; display: block; width: 100%; margin-bottom: 8px;">
+                <div class="situacion-card" id="card-${p.id}">
+                    <h4>${p.icono} ${p.situacion}</h4>
+                    <div class="opciones-container" id="opciones-${p.id}">
+                        ${p.opciones.map((op, i) => `
+                            <button class="opcion-btn btn-${i+1}" onclick="verificar(${p.id}, '${op.valor}', this)">
                                 ${op.texto}
                             </button>
                         `).join('')}
                     </div>
-                    <div id="resultado-${p.id}" style="margin-top: 10px; padding: 10px; display: none; border-radius: 8px;"></div>
+                    <div id="resultado-${p.id}" class="resultado"></div>
                 </div>
             `;
             contenedor.innerHTML += html;
@@ -98,18 +221,52 @@
     function verificar(id, valor, boton) {
         const pregunta = bancoPreguntas.find(p => p.id === id);
         const resultado = document.getElementById(`resultado-${id}`);
-        const opciones = boton.parentElement.querySelectorAll('button');
+        const opcionesDiv = document.getElementById(`opciones-${id}`);
+        const opciones = opcionesDiv.querySelectorAll('.opcion-btn');
+        
         opciones.forEach(btn => btn.disabled = true);
         
         const opcionCorrecta = pregunta.opciones.find(op => op.valor === valor);
         if (opcionCorrecta && opcionCorrecta.correcta) {
-            resultado.className = 'fuerte';
-            resultado.innerHTML = `✅ ¡CORRECTO! ${pregunta.explicacion}`;
+            resultado.className = 'resultado';
+            resultado.style.background = 'linear-gradient(135deg, #43e97b 0%, #38f9d7 100%)';
+            resultado.style.color = 'white';
+            resultado.innerHTML = `✅ ¡CORRECTO!<br><br>💡 <strong>TIP:</strong> ${pregunta.tip}`;
         } else {
-            resultado.className = 'debil';
-            resultado.innerHTML = `❌ Incorrecto. ${pregunta.explicacion}`;
+            resultado.className = 'resultado';
+            resultado.style.background = 'linear-gradient(135deg, #fa709a 0%, #fee140 100%)';
+            resultado.style.color = 'white';
+            resultado.innerHTML = `❌ Incorrecto.<br><br>💡 <strong>TIP:</strong> ${pregunta.tip}<br><button class="btn-intentar" onclick="intentarDeNuevo(${id})">🔄 Volver a intentar</button>`;
         }
         resultado.style.display = 'block';
+    }
+    
+    function intentarDeNuevo(id) {
+        const card = document.getElementById(`card-${id}`);
+        const disponibles = bancoPreguntas.filter(p => p.id !== id && !preguntasUsadas.includes(p.id));
+        if (disponibles.length === 0) {
+            preguntasUsadas = [];
+        }
+        
+        const nuevaPregunta = disponibles.length > 0 
+            ? disponibles[Math.floor(Math.random() * disponibles.length)]
+            : bancoPreguntas[Math.floor(Math.random() * bancoPreguntas.length)];
+        
+        preguntasUsadas.push(nuevaPregunta.id);
+        
+        card.innerHTML = `
+            <h4>${nuevaPregunta.icono} ${nuevaPregunta.situacion}</h4>
+            <div class="opciones-container" id="opciones-${nuevaPregunta.id}">
+                ${nuevaPregunta.opciones.map((op, i) => `
+                    <button class="opcion-btn btn-${i+1}" onclick="verificar(${nuevaPregunta.id}, '${op.valor}', this)">
+                        ${op.texto}
+                    </button>
+                `).join('')}
+            </div>
+            <div id="resultado-${nuevaPregunta.id}" class="resultado"></div>
+        `;
+        
+        card.id = `card-${nuevaPregunta.id}`;
     }
     
     window.onload = cargarNuevasPreguntas;
